@@ -83,6 +83,8 @@
 
 
 
+  
+
 
   <link rel="alternate" href="/blog/atom.xml" title="lliugh 的博客" type="application/atom+xml" />
 
@@ -96,17 +98,14 @@
 
 
 
-<meta name="description" content="123456789101112131415&amp;lt;VirtualHost *&amp;gt;        ServerName www.cahomeca.com        ErrorLog logs/cahomeca-error_log        CustomLog logs/cahomeca-access_log common        ProxyPreserveHost On">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Tomcat+Nginx反向代理配置">
-<meta property="og:url" content="https://gitee.com/lliugh/blog/2016/06/27/Tomcat-Nginx反向代理配置/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="标签">
+<meta property="og:url" content="https://gitee.com/lliugh/blog/tags/index.html">
 <meta property="og:site_name" content="lliugh 的博客">
-<meta property="og:description" content="123456789101112131415&amp;lt;VirtualHost *&amp;gt;        ServerName www.cahomeca.com        ErrorLog logs/cahomeca-error_log        CustomLog logs/cahomeca-access_log common        ProxyPreserveHost On">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-11T14:30:51.651Z">
+<meta property="og:updated_time" content="2018-02-13T08:27:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Tomcat+Nginx反向代理配置">
-<meta name="twitter:description" content="123456789101112131415&amp;lt;VirtualHost *&amp;gt;        ServerName www.cahomeca.com        ErrorLog logs/cahomeca-error_log        CustomLog logs/cahomeca-access_log common        ProxyPreserveHost On">
+<meta name="twitter:title" content="标签">
 
 
 
@@ -135,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="https://gitee.com/lliugh/blog/2016/06/27/Tomcat-Nginx反向代理配置/"/>
+  <link rel="canonical" href="https://gitee.com/lliugh/blog/tags/"/>
 
 
 
 
 
-  <title>Tomcat+Nginx反向代理配置 | lliugh 的博客</title>
+  <title>标签 | lliugh 的博客</title>
   
 
 
@@ -252,141 +251,40 @@
 
   <div id="posts" class="posts-expand">
     
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gitee.com/lliugh/blog/blog/2016/06/27/Tomcat-Nginx反向代理配置/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lliugh">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="lliugh 的博客">
-    </span>
-
     
+    
+    <div class="post-block page">
       <header class="post-header">
 
-        
-        
-          <h1 class="post-title" itemprop="name headline">Tomcat+Nginx反向代理配置</h1>
-        
+	<h1 class="post-title" itemprop="name headline">标签</h1>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-27T09:28:40+08:00">
-                2016-06-27
-              </time>
-            
 
-            
 
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+</header>
 
       
       
-
       
-        <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">&lt;VirtualHost *&gt;</span></span><br><span class="line">        <span class="attribute"><span class="nomarkup">ServerName</span></span> www.cahomeca.com</span><br><span class="line">        <span class="attribute">ErrorLog</span> logs/cahomeca-error_log</span><br><span class="line">        <span class="attribute">CustomLog</span> logs/cahomeca-access_log common</span><br><span class="line"></span><br><span class="line">        <span class="attribute">ProxyPreserveHost</span> <span class="literal">On</span></span><br><span class="line">        <span class="attribute">ProxyRequests</span> <span class="literal">Off</span></span><br><span class="line">        <span class="attribute">ProxyPass</span> / http://127.0.0.1:8080/</span><br><span class="line">        <span class="attribute">ProxyPassReverse</span> / http://127.0.0.1:8080/</span><br><span class="line">        <span class="section">&lt;proxy  http://127.0.0.1:8080&gt;</span></span><br><span class="line">                <span class="attribute">AllowOverride</span> None</span><br><span class="line">                <span class="attribute"><span class="nomarkup">Order</span></span> Deny,Allow</span><br><span class="line">                <span class="attribute"><span class="nomarkup">Allow</span></span> from <span class="literal">all</span></span><br><span class="line">        <span class="section">&lt;/proxy&gt;</span></span><br><span class="line"><span class="section">&lt;/VirtualHost&gt;</span></span><br></pre></td></tr></table></figure>
+      <div class="post-body">
+        
+        
+          <div class="tag-cloud">
+            <div class="tag-cloud-title">
+                目前共计 1 个标签
+            </div>
+            <div class="tag-cloud-tags">
+              <a href="/blog/tags/Tomcat/" style="font-size: 12px; color: #ccc">Tomcat</a>
+            </div>
+          </div>
+        
+      </div>
+      
+      
       
     </div>
     
     
     
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/blog/2016/06/26/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2016/06/27/URL的ASCII码表/" rel="prev" title="URL的ASCII码表">
-                URL的ASCII码表 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
   </div>
 
 
@@ -646,10 +544,10 @@
 
 
   
-  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.2"></script>
+    <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.2"></script>
 
-
+  
 
   
 
