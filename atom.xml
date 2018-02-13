@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>lliugh 的博客</title>
+  
+  
+  <link href="/blog/atom.xml" rel="self"/>
+  
+  <link href="https://gitee.com/lliugh/blog/"/>
+  <updated>2018-02-12T07:05:23.623Z</updated>
+  <id>https://gitee.com/lliugh/blog/</id>
+  
+  <author>
+    <name>lliugh</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>安装Tomcat日志拆分</title>
+    <link href="https://gitee.com/lliugh/blog/2018/02/12/%E5%AE%89%E8%A3%85Tomcat%E6%97%A5%E5%BF%97%E6%8B%86%E5%88%86/"/>
+    <id>https://gitee.com/lliugh/blog/2018/02/12/安装Tomcat日志拆分/</id>
+    <published>2018-02-12T03:59:13.847Z</published>
+    <updated>2018-02-12T07:05:23.623Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="使用root用户安装"><a href="#使用root用户安装" class="headerlink" title="使用root用户安装"></a>使用root用户安装</h3><h3 id="下载cronolog"><a href="#下载cronolog" class="headerlink" title="下载cronolog"></a>下载cronolog</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://files.cnblogs.com/files/crazyzero/cronolog-1.6.2.tar.</span><br></pre></td></tr></table></figure><h3 id="安装cronolog"><a href="#安装cronolog" class="headerlink" title="安装cronolog"></a>安装cronolog</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf cronolog-1.6.2.tar.gz</span><br><span class="line">cd cronolog-1.6.2/</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure><h3 id="确认是否安装"><a href="#确认是否安装" class="headerlink" title="确认是否安装"></a>确认是否安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/sbin/cronolog</span><br></pre></td></tr></table></figure><h3 id="修改Tomcat运行文件catalina-sh"><a href="#修改Tomcat运行文件catalina-sh" class="headerlink" title="修改Tomcat运行文件catalina.sh"></a>修改Tomcat运行文件catalina.sh</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">修改</span><br><span class="line"></span><br><span class="line">    org.apache.catalina.startup.Bootstrap "$@" start &gt;&gt; "$CATALINA_OUT" 2&gt;&amp;1 "&amp;"</span><br><span class="line"></span><br><span class="line">为</span><br><span class="line"></span><br><span class="line">    org.apache.catalina.startup.Bootstrap "$@" start 2&gt;&amp;1 | /usr/local/sbin/cronolog "$CATALINA_BASE"/logs/catalina.%Y-%m-%d.out &gt;&gt; /dev/null &amp;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;使用root用户安装&quot;&gt;&lt;a href=&quot;#使用root用户安装&quot; class=&quot;headerlink&quot; title=&quot;使用root用户安装&quot;&gt;&lt;/a&gt;使用root用户安装&lt;/h3&gt;&lt;h3 id=&quot;下载cronolog&quot;&gt;&lt;a href=&quot;#下载cronolog&quot;
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>CentOS安装Redis</title>
+    <link href="https://gitee.com/lliugh/blog/2018/02/12/CentOS%E5%AE%89%E8%A3%85Redis/"/>
+    <id>https://gitee.com/lliugh/blog/2018/02/12/CentOS安装Redis/</id>
+    <published>2018-02-12T01:22:40.895Z</published>
+    <updated>2018-02-12T04:29:42.563Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="安装系统依赖"><a href="#安装系统依赖" class="headerlink" title="安装系统依赖"></a>安装系统依赖</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install gcc-c++</span><br><span class="line">yum install -y tcl</span><br><span class="line">yum install wget</span><br></pre></td></tr></table></figure><h3 id="下载redis包"><a href="#下载redis包" class="headerlink" title="下载redis包"></a>下载redis包</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://download.redis.io/releases/redis-4.0.8.tar.gz</span><br></pre></td></tr></table></figure><h3 id="新建程序目录，并将tar包拷贝到目录中，解压"><a href="#新建程序目录，并将tar包拷贝到目录中，解压" class="headerlink" title="新建程序目录，并将tar包拷贝到目录中，解压"></a>新建程序目录，并将tar包拷贝到目录中，解压</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir /data</span><br><span class="line">tar -zxvf redis-4.0.8.tar.gz</span><br></pre></td></tr></table></figure><h3 id="进入目录并安装"><a href="#进入目录并安装" class="headerlink" title="进入目录并安装"></a>进入目录并安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /data/redis-4.0.8/</span><br><span class="line">make</span><br><span class="line">make install (此命令需要Root权限，程序会自动将redis-server拷贝到/usr/local/bin下)</span><br></pre></td></tr></table></figure><h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /etc/redis </span><br><span class="line">cp /data/redis-4.0.8/redis.conf /etc/redis/ (将配置文件拷贝到etc目录下)</span><br><span class="line">修改bind</span><br><span class="line">bind 0.0.0.0 (任何IP都可访问些Redis)</span><br><span class="line">daemonize no --&gt; yes (Redis以后台方式运行)</span><br></pre></td></tr></table></figure><h3 id="启动redis-不需要root用户"><a href="#启动redis-不需要root用户" class="headerlink" title="启动redis (不需要root用户)"></a>启动redis (不需要root用户)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/bin/redis-server /etc/redis/redis.conf</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;安装系统依赖&quot;&gt;&lt;a href=&quot;#安装系统依赖&quot; class=&quot;headerlink&quot; title=&quot;安装系统依赖&quot;&gt;&lt;/a&gt;安装系统依赖&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gut
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>将hexo博客同时托管到github和码云</title>
+    <link href="https://gitee.com/lliugh/blog/2018/02/11/%E5%B0%86hexo%E5%8D%9A%E5%AE%A2%E5%90%8C%E6%97%B6%E6%89%98%E7%AE%A1%E5%88%B0github%E5%92%8Ccoding/"/>
+    <id>https://gitee.com/lliugh/blog/2018/02/11/将hexo博客同时托管到github和coding/</id>
+    <published>2018-02-11T14:28:25.398Z</published>
+    <updated>2018-02-12T04:29:48.687Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="配置文件写成如下形式-config-yml"><a href="#配置文件写成如下形式-config-yml" class="headerlink" title="配置文件写成如下形式(_config.yml)"></a>配置文件写成如下形式(_config.yml)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">- type: git</span><br><span class="line">  repo: &#123;giturl&#125;</span><br><span class="line">  branch: master</span><br><span class="line">- type: git</span><br><span class="line">  repo: &#123;giturl&#125;</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;配置文件写成如下形式-config-yml&quot;&gt;&lt;a href=&quot;#配置文件写成如下形式-config-yml&quot; class=&quot;headerlink&quot; title=&quot;配置文件写成如下形式(_config.yml)&quot;&gt;&lt;/a&gt;配置文件写成如下形式(_config.ym
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>增加mybatis日志</title>
+    <link href="https://gitee.com/lliugh/blog/2018/02/11/%E5%A2%9E%E5%8A%A0mybatis%E6%97%A5%E5%BF%97/"/>
+    <id>https://gitee.com/lliugh/blog/2018/02/11/增加mybatis日志/</id>
+    <published>2018-02-11T10:25:34.526Z</published>
+    <updated>2018-02-12T01:10:29.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="修改工程web-xml，加入"><a href="#修改工程web-xml，加入" class="headerlink" title="修改工程web.xml，加入"></a>修改工程web.xml，加入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;context-param&gt;</span><br><span class="line">&lt;param-name&gt;log4jConfigLocation&lt;/param-name&gt;</span><br><span class="line">&lt;param-value&gt;classpath:log4j.properties&lt;/param-value&gt;</span><br><span class="line">&lt;/context-param&gt;</span><br><span class="line">&lt;context-param&gt;</span><br><span class="line">&lt;param-name&gt;log4jRefreshInterval&lt;/param-name&gt;</span><br><span class="line">&lt;param-value&gt;6000&lt;/param-value&gt;</span><br><span class="line">&lt;/context-param&gt;</span><br><span class="line">&lt;listener&gt;</span><br><span class="line">&lt;listener-class&gt;org.springframework.web.util.Log4jConfigListener&lt;/listener-class&gt;</span><br><span class="line">&lt;/listener&gt;</span><br></pre></td></tr></table></figure><h3 id="增加log4j-properties"><a href="#增加log4j-properties" class="headerlink" title="增加log4j.properties"></a>增加log4j.properties</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">###设置Logger输出级别和输出目的地###debug更详细,如果设为info那么打印出的表数据遇到字符串就不显示，此外还有logfile</span><br><span class="line">log4j.rootLogger=info,stdout,D,E</span><br><span class="line"></span><br><span class="line">###把日志信息输出到控制台###</span><br><span class="line">log4j.appender.stdout=org.apache.log4j.ConsoleAppender</span><br><span class="line">#log4j.appender.stdout.Target=System.err</span><br><span class="line">log4j.appender.stdout.layout=org.apache.log4j.SimpleLayout</span><br><span class="line"></span><br><span class="line">###把日志信息输出到文件：jbit.log###</span><br><span class="line">log4j.appender.logfile=org.apache.log4j.FileAppender</span><br><span class="line">log4j.appender.logfile.File=logs/Yimi/YimiInfo.log</span><br><span class="line">log4j.appender.logfile.layout=org.apache.log4j.PatternLayout</span><br><span class="line">log4j.appender.logfile.layout.ConversionPattern=%d&#123;yyyy-MM-ddHH:mm:ss&#125;%F%p%m%n</span><br><span class="line"></span><br><span class="line">###输出DEBUG级别以上的日志到###</span><br><span class="line">log4j.appender.D=org.apache.log4j.DailyRollingFileAppender</span><br><span class="line">log4j.appender.D.File=logs/Yimi/YimiDebug.log</span><br><span class="line">log4j.appender.D.Append=true</span><br><span class="line">log4j.appender.D.Threshold=DEBUG</span><br><span class="line">log4j.appender.D.layout=org.apache.log4j.PatternLayout</span><br><span class="line">log4j.appender.D.layout.ConversionPattern=%-d&#123;yyyy-MM-ddHH:mm:ss&#125;[%t:%r]-[%p]%m%n</span><br><span class="line"></span><br><span class="line">###输出ERROR级别以上的日志到###</span><br><span class="line">log4j.appender.E=org.apache.log4j.DailyRollingFileAppender</span><br><span class="line">log4j.appender.E.File=Yimi/YimiError.log</span><br><span class="line">log4j.appender.E.Append=true</span><br><span class="line">log4j.appender.E.Threshold=ERROR</span><br><span class="line">log4j.appender.E.layout=org.apache.log4j.PatternLayout</span><br><span class="line">log4j.appender.E.layout.ConversionPattern=%-d&#123;yyyy-MM-ddHH:mm:ss&#125;[%t:%r]-[%p]%m%n</span><br><span class="line"></span><br><span class="line">###显示SQL语句部分</span><br><span class="line">log4j.logger.com.mybatis=INFO</span><br><span class="line">log4j.logger.com.mybatis.common.jdbc.SimpleDataSource=INFO</span><br><span class="line">log4j.logger.com.mybatis.common.jdbc.ScriptRunner=INFO</span><br><span class="line">log4j.logger.com.mybatis.sqlmap.engine.impl.SqlMapClientDelegate=INFO</span><br><span class="line">log4j.logger.java.sql.Connection=INFO</span><br><span class="line">log4j.logger.java.sql.Statement=INFO</span><br><span class="line">log4j.logger.java.sql.PreparedStatement=INFO</span><br><span class="line">log4j.logger.java.sql.ResultSet=INFO</span><br></pre></td></tr></table></figure><h3 id="修改工程mybatis-xml，增加以下配置"><a href="#修改工程mybatis-xml，增加以下配置" class="headerlink" title="修改工程mybatis.xml，增加以下配置"></a>修改工程mybatis.xml，增加以下配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;setting name=&quot;logImpl&quot; value=&quot;STDOUT_LOGGING&quot; /&gt;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;修改工程web-xml，加入&quot;&gt;&lt;a href=&quot;#修改工程web-xml，加入&quot; class=&quot;headerlink&quot; title=&quot;修改工程web.xml，加入&quot;&gt;&lt;/a&gt;修改工程web.xml，加入&lt;/h3&gt;&lt;figure class=&quot;highlight 
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>微服务开发的12项要素</title>
+    <link href="https://gitee.com/lliugh/blog/2016/07/16/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%BC%80%E5%8F%91%E7%9A%8412%E9%A1%B9%E8%A6%81%E7%B4%A0/"/>
+    <id>https://gitee.com/lliugh/blog/2016/07/16/微服务开发的12项要素/</id>
+    <published>2016-07-16T03:27:50.000Z</published>
+    <updated>2016-07-16T05:12:10.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>spring cloud官方文档提到的服务开发的12项要素。</p><p>I. Codebase<br>从一个代码库部署到多个环境。</p><p>II. Dependencies<br>使用显式的声明隔离依赖，即模块单独运行，并可以显式管理依赖。</p><p>III. Config<br>*在系统外部存储配置信息。</p><p>IV. Backing Services<br>把支持性服务看做是资源，支持性服务包括数据库、消息队列、缓冲服务器等。</p><p>V. Build, release, run<br>严格的划分编译、构建、运行阶段，每个阶段由工具进行管理。</p><p>VI. Processes<br>应用作为无状态执行。</p><p>VII. Port binding<br>经由端口绑定导出服务，优先选择 HTTP API 作为通用的集成框架。</p><p>VIII. Concurrency<br>并发性使用水平扩展实现，对于web就是水平扩展web应用实现。</p><p>IX. Disposability<br>服务可处置性，任何服务可以随意终止或启动。</p><p>X. Dev/prod parity<br>开发和生产环境保持高度一致，一键式部署。</p><p>XI. Logs<br>将日志看做是事件流来管理，所有参与的服务均使用该方式处理日志。</p><p>XII. Admin processes<br>管理任务作为一次性的过程运行（使用脚本管理服务启动和停止）。</p><p>转自：<a href="http://www.cnblogs.com/skyblog/p/5099140.html" target="_blank" rel="noopener">http://www.cnblogs.com/skyblog/p/5099140.html</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;spring cloud官方文档提到的服务开发的12项要素。&lt;/p&gt;
+&lt;p&gt;I. Codebase&lt;br&gt;从一个代码库部署到多个环境。&lt;/p&gt;
+&lt;p&gt;II. Dependencies&lt;br&gt;使用显式的声明隔离依赖，即模块单独运行，并可以显式管理依赖。&lt;/p&gt;
+&lt;p&gt;III.
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>URL的ASCII码表</title>
+    <link href="https://gitee.com/lliugh/blog/2016/06/27/URL%E7%9A%84ASCII%E7%A0%81%E8%A1%A8/"/>
+    <id>https://gitee.com/lliugh/blog/2016/06/27/URL的ASCII码表/</id>
+    <published>2016-06-27T02:37:22.000Z</published>
+    <updated>2016-06-27T02:45:08.000Z</updated>
+    
+    <content type="html"><![CDATA[<table><thead><tr><th>ASCII字符</th><th>字符中文名</th><th>编码后的值</th></tr></thead><tbody><tr><td>   ‘ ‘</td><td>空格</td><td>%20</td></tr><tr><td>   ‘!’</td><td>感叹号</td><td>%21</td></tr><tr><td>   ‘&amp;’</td><td>花at</td><td>%26</td></tr><tr><td>   ‘/’</td><td>斜杠</td><td>%2F</td></tr><tr><td>   ‘:’</td><td>冒号)</td><td>%3A</td></tr><tr><td>   ‘=’</td><td>等于号</td><td>%3D</td></tr><tr><td>   ‘?’</td><td>问号</td><td>%3F</td></tr><tr><td>   ‘~’</td><td>波浪号</td><td>%7E</td></tr></tbody></table>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;ASCII字符&lt;/th&gt;
+&lt;th&gt;字符中文名&lt;/th&gt;
+&lt;th&gt;编码后的值&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;   ‘ ‘&lt;/td&gt;
+&lt;td&gt;空格&lt;/td&gt;
+&lt;td&gt;%20&lt;/td&gt;
+&lt;/t
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Tomcat+Nginx反向代理配置</title>
+    <link href="https://gitee.com/lliugh/blog/2016/06/27/Tomcat-Nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE/"/>
+    <id>https://gitee.com/lliugh/blog/2016/06/27/Tomcat-Nginx反向代理配置/</id>
+    <published>2016-06-27T01:28:40.000Z</published>
+    <updated>2018-02-11T14:30:51.651Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;VirtualHost *&gt;</span><br><span class="line">        ServerName www.cahomeca.com</span><br><span class="line">        ErrorLog logs/cahomeca-error_log</span><br><span class="line">        CustomLog logs/cahomeca-access_log common</span><br><span class="line"></span><br><span class="line">        ProxyPreserveHost On</span><br><span class="line">        ProxyRequests Off</span><br><span class="line">        ProxyPass / http://127.0.0.1:8080/</span><br><span class="line">        ProxyPassReverse / http://127.0.0.1:8080/</span><br><span class="line">        &lt;proxy  http://127.0.0.1:8080&gt;</span><br><span class="line">                AllowOverride None</span><br><span class="line">                Order Deny,Allow</span><br><span class="line">                Allow from all</span><br><span class="line">        &lt;/proxy&gt;</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://gitee.com/lliugh/blog/2016/06/26/hello-world/"/>
+    <id>https://gitee.com/lliugh/blog/2016/06/26/hello-world/</id>
+    <published>2016-06-26T15:24:02.000Z</published>
+    <updated>2016-06-26T15:24:02.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
