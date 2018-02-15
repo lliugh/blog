@@ -6,7 +6,7 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="https://gitee.com/lliugh/blog/"/>
-  <updated>2018-02-15T03:27:55.035Z</updated>
+  <updated>2018-02-15T05:43:57.636Z</updated>
   <id>https://gitee.com/lliugh/blog/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Nginx操作图片</title>
+    <link href="https://gitee.com/lliugh/blog/2018/02/15/Nginx%E6%93%8D%E4%BD%9C%E5%9B%BE%E7%89%87/"/>
+    <id>https://gitee.com/lliugh/blog/2018/02/15/Nginx操作图片/</id>
+    <published>2018-02-15T04:02:31.591Z</published>
+    <updated>2018-02-15T05:43:57.636Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="打水印版nginx安装过程-centos"><a href="#打水印版nginx安装过程-centos" class="headerlink" title="打水印版nginx安装过程(centos)"></a>打水印版nginx安装过程(centos)</h2><blockquote><h3 id="1-安装依赖组件"><a href="#1-安装依赖组件" class="headerlink" title="1.    安装依赖组件"></a>1.    安装依赖组件</h3><p>sudo yum install gd-devel pcre-devel libcurl-devel</p></blockquote><h3 id="2-下载nginx"><a href="#2-下载nginx" class="headerlink" title="2.    下载nginx"></a>2.    下载nginx</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(1)下载 wget http://nginx.org/download/nginx-1.9.6.tar.gz </span><br><span class="line">(2)解压 tar -zxvf nginx-1.9.6.tar.gz </span><br><span class="line">(3) 进入目录 <span class="built_in">cd</span> nginx-1.9.6</span><br></pre></td></tr></table></figure><h3 id="3-下载水印功能源代码"><a href="#3-下载水印功能源代码" class="headerlink" title="3.    下载水印功能源代码"></a>3.    下载水印功能源代码</h3><p><a href="https://github.com/intaro/nginx-image-filter-watermark" target="_blank" rel="noopener">https://github.com/intaro/nginx-image-filter-watermark</a><br>点击download zip下载 </p><ol><li>覆盖nginx中的代码<br>将下载的zip解压，将其中的ngx_http_image_filter_module.c文件覆盖到nginx源码中（/src/http/modules/http_image_filter_module.c） </li><li><p>编译安装nginx（假设nginx源码在usr/local/nginx/nginx-1.9.6中）<br>./configure –with-http_image_filter_module<br>–with-http_stub_status_module –with-http_ssl_module –with-http_sub_module  –prefix=/usr/local/nginx/nginx-1.9.6<br>make<br>make install </p></li><li><p>配置<br>Example Usage<br>Base Usage:<br>location /img/ {<br>  image_filter watermark;#开启水印<br>  image_filter_watermark “PATH_TO_FILE”;#水印文件位置<br>  image_filter_watermark_position center-center;#水印位置<br>image_filter_jpeg_quality   95;#图片质量<br>  image_filter_buffer         20M;#缓存<br>image_filter_watermark_width_from 400;   # 打水印的图片最小宽带，只有大于这个宽带的才会打水印<br> image_filter_watermark_height_from 400;  #打水印的图片最小高度，只有大于这个高度的才会打水印 </p></li></ol><pre><code>} </code></pre><p>Usage with resize and crop:<br>   location ~ ^/r/(\d+|-)x(\d+|-)/c/(\d+|-)x(\d+|-)/(.+) {<br>       set                         $resize_width  $1;<br>       set                         $resize_height $2;<br>       set                         $crop_width  $3;<br>       set                         $crop_height $4; </p><pre><code>alias                       /Users/goshan/Sites/Zot/Zot/web/$5; try_files                   &quot;&quot; @404; image_filter                resize $resize_width $resize_height; image_filter                crop   $crop_width $crop_height; image_filter_jpeg_quality   95; image_filter_buffer         2M; image_filter_watermark_width_from 400;   # Minimal width (after resize) of when to use watermark image_filter_watermark_height_from 400;  # Minimal height (after resize) of when to use watermark image_filter_watermark &quot;PATH_TO_FILE&quot;; image_filter_watermark_position center-center; </code></pre><p>   } </p><ol><li>注意事项<br>(1)    水印文件必须是背景透明的文件<br>(2)    如果要打水印的图片文件会很大，需将image_filter_buffer设置大一些，比如20M </li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;打水印版nginx安装过程-centos&quot;&gt;&lt;a href=&quot;#打水印版nginx安装过程-centos&quot; class=&quot;headerlink&quot; title=&quot;打水印版nginx安装过程(centos)&quot;&gt;&lt;/a&gt;打水印版nginx安装过程(centos)&lt;/h2
+      
+    
+    </summary>
+    
+    
+      <category term="Nginx" scheme="https://gitee.com/lliugh/blog/tags/Nginx/"/>
+    
+  </entry>
   
   <entry>
     <title>2018年春节</title>
