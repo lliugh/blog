@@ -6,7 +6,7 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="https://gitee.com/lliugh/blog/"/>
-  <updated>2018-02-26T08:44:56.440Z</updated>
+  <updated>2018-03-07T02:41:06.194Z</updated>
   <id>https://gitee.com/lliugh/blog/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SLF4J报错的解决</title>
+    <link href="https://gitee.com/lliugh/blog/2018/03/07/SLF4J%E6%8A%A5%E9%94%99%E7%9A%84%E8%A7%A3%E5%86%B3/"/>
+    <id>https://gitee.com/lliugh/blog/2018/03/07/SLF4J报错的解决/</id>
+    <published>2018-03-07T02:38:23.240Z</published>
+    <updated>2018-03-07T02:41:06.194Z</updated>
+    
+    <content type="html"><![CDATA[<p>项目未能启动，查看日志，报错为<br>java.lang.NoClassDefFoundError: org/slf4j/event/LoggingEvent</p><p>实际问题<br>Logback-classic version 1.1.4及其以后的版本需要1.7.15及其以上版本的slf4j-api。</p><p>记住这个问题只会出现在1.1.4及其以后的logback版本，其他的绑定，例如slf4j-log4j, slf4j-jdk14 and slf4j-simple是不受影响的。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;项目未能启动，查看日志，报错为&lt;br&gt;java.lang.NoClassDefFoundError: org/slf4j/event/LoggingEvent&lt;/p&gt;
+&lt;p&gt;实际问题&lt;br&gt;Logback-classic version 1.1.4及其以后的版本需要1.7.
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="https://gitee.com/lliugh/blog/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>Nginx操作图片</title>
