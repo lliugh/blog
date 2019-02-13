@@ -6,7 +6,7 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="https://gitee.com/lliugh/blog/"/>
-  <updated>2019-02-13T03:04:31.287Z</updated>
+  <updated>2019-02-13T03:33:21.399Z</updated>
   <id>https://gitee.com/lliugh/blog/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一文了解 OutOfMemory 及解决方案</title>
+    <link href="https://gitee.com/lliugh/blog/2019/02/13/%E4%B8%80%E6%96%87%E4%BA%86%E8%A7%A3%20OutOfMemory%20%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+    <id>https://gitee.com/lliugh/blog/2019/02/13/一文了解 OutOfMemory 及解决方案/</id>
+    <published>2019-02-13T03:09:08.564Z</published>
+    <updated>2019-02-13T03:33:21.399Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>来自：唐尤华</p><p>译自：<a href="https://bloggceasy.files.wordpress.com/2015/05/outofmemoryerror2.pdf" target="_blank" rel="noopener">https://bloggceasy.files.wordpress.com/2015/05/outofmemoryerror2.pdf</a></p></blockquote><h3 id="1-Java-堆空间"><a href="#1-Java-堆空间" class="headerlink" title="1. Java 堆空间"></a>1. Java 堆空间</h3><h4 id="发生频率"><a href="#发生频率" class="headerlink" title="发生频率"></a>发生频率</h4><p>5颗星</p><h4 id="造成原因"><a href="#造成原因" class="headerlink" title="造成原因"></a>造成原因</h4><ol><li>无法在 Java 堆中分配对象</li><li>吞吐量增加</li><li>应用程序无意中保存了对象引用，对象无法被 GC 回收</li><li>应用程序过度使用 finalizer。finalizer 对象不能被 GC 立刻回收。finalizer 由结束队列服务的守护线程调用，有时 finalizer 线程的处理能力无法跟上结束队列的增长</li></ol><h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><blockquote><p>单位对应：GB -&gt; G, g；MB -&gt; M, m；KB -&gt; K, k</p><ol><li>使用 -Xmx 增加堆大小</li><li>修复应用程序中的内存泄漏</li></ol></blockquote><h3 id="2-GC-开销超过限制"><a href="#2-GC-开销超过限制" class="headerlink" title="2. GC 开销超过限制"></a>2. GC 开销超过限制</h3><h4 id="发生频率-1"><a href="#发生频率-1" class="headerlink" title="发生频率"></a>发生频率</h4><p>5颗星</p><h4 id="造成原因-1"><a href="#造成原因-1" class="headerlink" title="造成原因"></a>造成原因</h4><ol><li>Java 进程98%的时间在进行垃圾回收，恢复了不到2%的堆空间，最后连续5个（编译时常量）垃圾回收一直如此。</li></ol><h4 id="解决方案-1"><a href="#解决方案-1" class="headerlink" title="解决方案"></a>解决方案</h4><ol><li>使用 -Xmx 增加堆大小</li><li>使用 -XX:-UseGCOverheadLimit 取消 GC 开销限制</li><li>修复应用程序中的内存泄漏</li></ol><h3 id="3-请求的数组大小超过虚拟机限制"><a href="#3-请求的数组大小超过虚拟机限制" class="headerlink" title="3. 请求的数组大小超过虚拟机限制"></a>3. 请求的数组大小超过虚拟机限制</h3><h4 id="发生频率-2"><a href="#发生频率-2" class="headerlink" title="发生频率"></a>发生频率</h4><p>2颗星</p><h4 id="造成原因-2"><a href="#造成原因-2" class="headerlink" title="造成原因"></a>造成原因</h4><ol><li>应用程序试图分配一个超过堆大小的数组</li></ol><h4 id="解决方案-2"><a href="#解决方案-2" class="headerlink" title="解决方案"></a>解决方案</h4><ol><li>使用 -Xmx 增加堆大小</li><li>修复应用程序中分配巨大数组的 bug</li></ol><h3 id="4-Permgen-空间"><a href="#4-Permgen-空间" class="headerlink" title="4. Permgen 空间"></a>4. Permgen 空间</h3><h4 id="发生频率-3"><a href="#发生频率-3" class="headerlink" title="发生频率"></a>发生频率</h4><p>3颗星</p><h4 id="造成原因-3"><a href="#造成原因-3" class="headerlink" title="造成原因"></a>造成原因</h4><ol><li>Permgen 空间包含：<ul><li>类的名字、字段、方法</li><li>与类相关的对象数组和类型数组</li><li>JIT 编译器优化</li></ul></li><li>当 Permgen 空间用尽时，将抛出异常。</li></ol><h4 id="解决方案-3"><a href="#解决方案-3" class="headerlink" title="解决方案"></a>解决方案</h4><ol><li>使用 -XX: MaxPermSize 增加 Permgen 大小</li><li>不重启应用部署应用程序可能会导致此问题。重启 JVM 解决</li></ol><h3 id="5-Metaspace"><a href="#5-Metaspace" class="headerlink" title="5. Metaspace"></a>5. Metaspace</h3><h4 id="发生频率-4"><a href="#发生频率-4" class="headerlink" title="发生频率"></a>发生频率</h4><p>3颗星</p><h4 id="造成原因-4"><a href="#造成原因-4" class="headerlink" title="造成原因"></a>造成原因</h4><ol><li>从 Java 8 开始 Permgen 改成了 Metaspace，在本机内存中分配 class 元数据（称为 metaspace）。如果 metaspace 耗尽，则抛出异常</li></ol><h4 id="解决方案-4"><a href="#解决方案-4" class="headerlink" title="解决方案"></a>解决方案</h4><ol><li>通过命令行设置 -XX: MaxMetaSpaceSize 增加 metaspace 大小</li><li>取消 -XX: maxmetsspacedize</li><li>减小 Java 堆大小,为 MetaSpace 提供更多的可用空间</li><li>为服务器分配更多的内存</li><li>可能是应用程序 bug，修复 bug</li></ol><h3 id="6-无法新建本机线程"><a href="#6-无法新建本机线程" class="headerlink" title="6. 无法新建本机线程"></a>6. 无法新建本机线程</h3><h4 id="发生频率-5"><a href="#发生频率-5" class="headerlink" title="发生频率"></a>发生频率</h4><p>5颗星</p><h4 id="造成原因-5"><a href="#造成原因-5" class="headerlink" title="造成原因"></a>造成原因</h4><ol><li>内存不足，无法创建新线程。由于线程在本机内存中创建，报告这个错误表明本机内存空间不足</li></ol><h4 id="解决方案-5"><a href="#解决方案-5" class="headerlink" title="解决方案"></a>解决方案</h4><ol><li>为机器分配更多的内存</li><li>减少 Java 堆空间</li><li>修复应用程序中的线程泄漏。</li><li>增加操作系统级别的限制<ul><li>ulimit -a</li><li>用户进程数增大 (-u) 1800</li></ul></li><li>使用 -Xss 减小线程堆栈大小</li></ol><h3 id="7-杀死进程或子进程"><a href="#7-杀死进程或子进程" class="headerlink" title="7. 杀死进程或子进程"></a>7. 杀死进程或子进程</h3><h4 id="发生频率-6"><a href="#发生频率-6" class="headerlink" title="发生频率"></a>发生频率</h4><p>1颗星</p><h4 id="造成原因-6"><a href="#造成原因-6" class="headerlink" title="造成原因"></a>造成原因</h4><ol><li>内核任务：内存不足结束器，在可用内存极低的情况下会杀死进程</li></ol><h4 id="解决方案-6"><a href="#解决方案-6" class="headerlink" title="解决方案"></a>解决方案</h4><ol><li>将进程迁移到不同的机器上</li><li>给机器增加更多内存</li></ol><p>与其他 OOM 错误不同，这是由操作系统而非 JVM 触发的。</p><h3 id="8-发生-stack-trace-with-native-method"><a href="#8-发生-stack-trace-with-native-method" class="headerlink" title="8. 发生 stack_trace_with_native_method"></a>8. 发生 stack_trace_with_native_method</h3><h4 id="发生频率-7"><a href="#发生频率-7" class="headerlink" title="发生频率"></a>发生频率</h4><p>1颗星</p><h4 id="造成原因-7"><a href="#造成原因-7" class="headerlink" title="造成原因"></a>造成原因</h4><ol><li>本机方法（native method）分配失败</li><li>打印的堆栈跟踪信息，最顶层的帧是本机方法</li></ol><h4 id="解决方案-7"><a href="#解决方案-7" class="headerlink" title="解决方案"></a>解决方案</h4><ol><li>使用操作系统本地工具进行诊断</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;来自：唐尤华&lt;/p&gt;
+&lt;p&gt;译自：&lt;a href=&quot;https://bloggceasy.files.wordpress.com/2015/05/outofmemoryerror2.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopene
+      
+    
+    </summary>
+    
+    
+      <category term="工作" scheme="https://gitee.com/lliugh/blog/tags/%E5%B7%A5%E4%BD%9C/"/>
+    
+  </entry>
   
   <entry>
     <title>Nginx处理图片注意事项</title>
