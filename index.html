@@ -265,6 +265,137 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/lliugh/blog/blog/2019/03/02/分布式系统/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lliugh">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/upload/avater_1.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lliugh 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/blog/2019/03/02/分布式系统/" itemprop="url">Nginx处理图片注意事项</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-02T22:25:20+08:00">
+                2019-03-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>作者：大闲人柴毛毛</p>
+<p>链接：<a href="https://www.zhihu.com/question/20004877/answer/282033178" target="_blank" rel="noopener">https://www.zhihu.com/question/20004877/answer/282033178</a></p>
+<p>来源：知乎</p>
+<p>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+</blockquote>
+<p><img src="../images/fb-1.jpg" alt="Alt text"></p>
+<h3 id="单机结构"><a href="#单机结构" class="headerlink" title="单机结构"></a>单机结构</h3><h4 id="我想大家最最最熟悉的就是单机结构，一个系统业务量很小的时候所有的代码都放在一个项目中就好了，然后这个项目部署在一台服务器上就好了。整个项目所有的服务都由这台服务器提供。这就是单机结构。"><a href="#我想大家最最最熟悉的就是单机结构，一个系统业务量很小的时候所有的代码都放在一个项目中就好了，然后这个项目部署在一台服务器上就好了。整个项目所有的服务都由这台服务器提供。这就是单机结构。" class="headerlink" title="我想大家最最最熟悉的就是单机结构，一个系统业务量很小的时候所有的代码都放在一个项目中就好了，然后这个项目部署在一台服务器上就好了。整个项目所有的服务都由这台服务器提供。这就是单机结构。"></a>我想大家最最最熟悉的就是单机结构，一个系统业务量很小的时候所有的代码都放在一个项目中就好了，然后这个项目部署在一台服务器上就好了。整个项目所有的服务都由这台服务器提供。这就是单机结构。</h4><h4 id="那么，单机结构有啥缺点呢？我想缺点是显而易见的，单机的处理能力毕竟是有限的，当你的业务增长到一定程度的时候，单机的硬件资源将无法满足你的业务需求。此时便出现了集群模式，往下接着看。"><a href="#那么，单机结构有啥缺点呢？我想缺点是显而易见的，单机的处理能力毕竟是有限的，当你的业务增长到一定程度的时候，单机的硬件资源将无法满足你的业务需求。此时便出现了集群模式，往下接着看。" class="headerlink" title="那么，单机结构有啥缺点呢？我想缺点是显而易见的，单机的处理能力毕竟是有限的，当你的业务增长到一定程度的时候，单机的硬件资源将无法满足你的业务需求。此时便出现了集群模式，往下接着看。"></a>那么，单机结构有啥缺点呢？我想缺点是显而易见的，单机的处理能力毕竟是有限的，当你的业务增长到一定程度的时候，单机的硬件资源将无法满足你的业务需求。此时便出现了集群模式，往下接着看。</h4><h3 id="集群结构"><a href="#集群结构" class="headerlink" title="集群结构"></a>集群结构</h3><h4 id="集群模式在程序猿界有各种装逼解释，有的让你根本无法理解，其实就是一个很简单的玩意儿，且听我一一道来。"><a href="#集群模式在程序猿界有各种装逼解释，有的让你根本无法理解，其实就是一个很简单的玩意儿，且听我一一道来。" class="headerlink" title="集群模式在程序猿界有各种装逼解释，有的让你根本无法理解，其实就是一个很简单的玩意儿，且听我一一道来。"></a>集群模式在程序猿界有各种装逼解释，有的让你根本无法理解，其实就是一个很简单的玩意儿，且听我一一道来。</h4><h4 id="单机处理到达瓶颈的时候，你就把单机复制几份，这样就构成了一个“集群”。集群中每台服务器就叫做这个集群的一个“节点”，所有节点构成了一个集群。每个节点都提供相同的服务，那么这样系统的处理能力就相当于提升了好几倍（有几个节点就相当于提升了这么多倍）。"><a href="#单机处理到达瓶颈的时候，你就把单机复制几份，这样就构成了一个“集群”。集群中每台服务器就叫做这个集群的一个“节点”，所有节点构成了一个集群。每个节点都提供相同的服务，那么这样系统的处理能力就相当于提升了好几倍（有几个节点就相当于提升了这么多倍）。" class="headerlink" title="单机处理到达瓶颈的时候，你就把单机复制几份，这样就构成了一个“集群”。集群中每台服务器就叫做这个集群的一个“节点”，所有节点构成了一个集群。每个节点都提供相同的服务，那么这样系统的处理能力就相当于提升了好几倍（有几个节点就相当于提升了这么多倍）。"></a>单机处理到达瓶颈的时候，你就把单机复制几份，这样就构成了一个“集群”。集群中每台服务器就叫做这个集群的一个“节点”，所有节点构成了一个集群。每个节点都提供相同的服务，那么这样系统的处理能力就相当于提升了好几倍（有几个节点就相当于提升了这么多倍）。</h4><h4 id="但问题是用户的请求究竟由哪个节点来处理呢？最好能够让此时此刻负载较小的节点来处理，这样使得每个节点的压力都比较平均。要实现这个功能，就需要在所有节点之前增加一个“调度者”的角色，用户的所有请求都先交给它，然后它根据当前所有节点的负载情况，决定将这个请求交给哪个节点处理。这个“调度者”有个牛逼了名字——负载均衡服务器。"><a href="#但问题是用户的请求究竟由哪个节点来处理呢？最好能够让此时此刻负载较小的节点来处理，这样使得每个节点的压力都比较平均。要实现这个功能，就需要在所有节点之前增加一个“调度者”的角色，用户的所有请求都先交给它，然后它根据当前所有节点的负载情况，决定将这个请求交给哪个节点处理。这个“调度者”有个牛逼了名字——负载均衡服务器。" class="headerlink" title="但问题是用户的请求究竟由哪个节点来处理呢？最好能够让此时此刻负载较小的节点来处理，这样使得每个节点的压力都比较平均。要实现这个功能，就需要在所有节点之前增加一个“调度者”的角色，用户的所有请求都先交给它，然后它根据当前所有节点的负载情况，决定将这个请求交给哪个节点处理。这个“调度者”有个牛逼了名字——负载均衡服务器。"></a>但问题是用户的请求究竟由哪个节点来处理呢？最好能够让此时此刻负载较小的节点来处理，这样使得每个节点的压力都比较平均。要实现这个功能，就需要在所有节点之前增加一个“调度者”的角色，用户的所有请求都先交给它，然后它根据当前所有节点的负载情况，决定将这个请求交给哪个节点处理。这个“调度者”有个牛逼了名字——负载均衡服务器。</h4><h4 id="集群结构的好处就是系统扩展非常容易。如果随着你们系统业务的发展，当前的系统又支撑不住了，那么给这个集群再增加节点就行了。但是，当你的业务发展到一定程度的时候，你会发现一个问题——无论怎么增加节点，貌似整个集群性能的提升效果并不明显了。这时候，你就需要使用微服务结构了。"><a href="#集群结构的好处就是系统扩展非常容易。如果随着你们系统业务的发展，当前的系统又支撑不住了，那么给这个集群再增加节点就行了。但是，当你的业务发展到一定程度的时候，你会发现一个问题——无论怎么增加节点，貌似整个集群性能的提升效果并不明显了。这时候，你就需要使用微服务结构了。" class="headerlink" title="集群结构的好处就是系统扩展非常容易。如果随着你们系统业务的发展，当前的系统又支撑不住了，那么给这个集群再增加节点就行了。但是，当你的业务发展到一定程度的时候，你会发现一个问题——无论怎么增加节点，貌似整个集群性能的提升效果并不明显了。这时候，你就需要使用微服务结构了。"></a>集群结构的好处就是系统扩展非常容易。如果随着你们系统业务的发展，当前的系统又支撑不住了，那么给这个集群再增加节点就行了。但是，当你的业务发展到一定程度的时候，你会发现一个问题——无论怎么增加节点，貌似整个集群性能的提升效果并不明显了。这时候，你就需要使用微服务结构了。</h4><h3 id="分布式结构"><a href="#分布式结构" class="headerlink" title="分布式结构"></a>分布式结构</h3><h4 id="先来对前面的知识点做个总结。"><a href="#先来对前面的知识点做个总结。" class="headerlink" title="先来对前面的知识点做个总结。"></a>先来对前面的知识点做个总结。</h4><h4 id="从单机结构到集群结构，你的代码基本无需要作任何修改，你要做的仅仅是多部署几台服务器，每台服务器上运行相同的代码就行了。但是，当你要从集群结构演进到微服务结构的时候，之前的那套代码就需要发生较大的改动了。所以对于新系统我们建议，系统设计之初就采用微服务架构，这样后期运维的成本更低。但如果一套老系统需要升级成微服务结构的话，那就得对代码大动干戈了。所以，对于老系统而言，究竟是继续保持集群模式，还是升级成微服务架构，这需要你们的架构师深思熟虑、权衡投入产出比。"><a href="#从单机结构到集群结构，你的代码基本无需要作任何修改，你要做的仅仅是多部署几台服务器，每台服务器上运行相同的代码就行了。但是，当你要从集群结构演进到微服务结构的时候，之前的那套代码就需要发生较大的改动了。所以对于新系统我们建议，系统设计之初就采用微服务架构，这样后期运维的成本更低。但如果一套老系统需要升级成微服务结构的话，那就得对代码大动干戈了。所以，对于老系统而言，究竟是继续保持集群模式，还是升级成微服务架构，这需要你们的架构师深思熟虑、权衡投入产出比。" class="headerlink" title="从单机结构到集群结构，你的代码基本无需要作任何修改，你要做的仅仅是多部署几台服务器，每台服务器上运行相同的代码就行了。但是，当你要从集群结构演进到微服务结构的时候，之前的那套代码就需要发生较大的改动了。所以对于新系统我们建议，系统设计之初就采用微服务架构，这样后期运维的成本更低。但如果一套老系统需要升级成微服务结构的话，那就得对代码大动干戈了。所以，对于老系统而言，究竟是继续保持集群模式，还是升级成微服务架构，这需要你们的架构师深思熟虑、权衡投入产出比。"></a>从单机结构到集群结构，你的代码基本无需要作任何修改，你要做的仅仅是多部署几台服务器，每台服务器上运行相同的代码就行了。但是，当你要从集群结构演进到微服务结构的时候，之前的那套代码就需要发生较大的改动了。所以对于新系统我们建议，系统设计之初就采用微服务架构，这样后期运维的成本更低。但如果一套老系统需要升级成微服务结构的话，那就得对代码大动干戈了。所以，对于老系统而言，究竟是继续保持集群模式，还是升级成微服务架构，这需要你们的架构师深思熟虑、权衡投入产出比。</h4><h4 id="OK，下面开始介绍所谓的分布式结构。"><a href="#OK，下面开始介绍所谓的分布式结构。" class="headerlink" title="OK，下面开始介绍所谓的分布式结构。"></a>OK，下面开始介绍所谓的分布式结构。</h4><h4 id="分布式结构就是将一个完整的系统，按照业务功能，拆分成一个个独立的子系统，在分布式结构中，每个子系统就被称为“服务”。这些子系统能够独立运行在web容器中，它们之间通过RPC方式通信。"><a href="#分布式结构就是将一个完整的系统，按照业务功能，拆分成一个个独立的子系统，在分布式结构中，每个子系统就被称为“服务”。这些子系统能够独立运行在web容器中，它们之间通过RPC方式通信。" class="headerlink" title="分布式结构就是将一个完整的系统，按照业务功能，拆分成一个个独立的子系统，在分布式结构中，每个子系统就被称为“服务”。这些子系统能够独立运行在web容器中，它们之间通过RPC方式通信。"></a>分布式结构就是将一个完整的系统，按照业务功能，拆分成一个个独立的子系统，在分布式结构中，每个子系统就被称为“服务”。这些子系统能够独立运行在web容器中，它们之间通过RPC方式通信。</h4><h4 id="举个例子，假设需要开发一个在线商城。按照微服务的思想，我们需要按照功能模块拆分成多个独立的服务，如：用户服务、产品服务、订单服务、后台管理服务、数据分析服务等等。这一个个服务都是一个个独立的项目，可以独立运行。如果服务之间有依赖关系，那么通过RPC方式调用。"><a href="#举个例子，假设需要开发一个在线商城。按照微服务的思想，我们需要按照功能模块拆分成多个独立的服务，如：用户服务、产品服务、订单服务、后台管理服务、数据分析服务等等。这一个个服务都是一个个独立的项目，可以独立运行。如果服务之间有依赖关系，那么通过RPC方式调用。" class="headerlink" title="举个例子，假设需要开发一个在线商城。按照微服务的思想，我们需要按照功能模块拆分成多个独立的服务，如：用户服务、产品服务、订单服务、后台管理服务、数据分析服务等等。这一个个服务都是一个个独立的项目，可以独立运行。如果服务之间有依赖关系，那么通过RPC方式调用。"></a>举个例子，假设需要开发一个在线商城。按照微服务的思想，我们需要按照功能模块拆分成多个独立的服务，如：用户服务、产品服务、订单服务、后台管理服务、数据分析服务等等。这一个个服务都是一个个独立的项目，可以独立运行。如果服务之间有依赖关系，那么通过RPC方式调用。</h4><h4 id="这样的好处有很多："><a href="#这样的好处有很多：" class="headerlink" title="这样的好处有很多："></a>这样的好处有很多：</h4><ol>
+<li>系统之间的耦合度大大降低，可以独立开发、独立部署、独立测试，系统与系统之间的边界非常明确，排错也变得相当容易，开发效率大大提升。</li>
+<li>系统之间的耦合度降低，从而系统更易于扩展。我们可以针对性地扩展某些服务。假设这个商城要搞一次大促，下单量可能会大大提升，因此我们可以针对性地提升订单系统、产品系统的节点数量，而对于后台管理系统、数据分析系统而言，节点数量维持原有水平即可。</li>
+<li>服务的复用性更高。比如，当我们将用户系统作为单独的服务后，该公司所有的产品都可以使用该系统作为用户系统，无需重复开发。</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://gitee.com/lliugh/blog/blog/2019/02/13/一文了解 OutOfMemory 及解决方案/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1448,127 +1579,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gitee.com/lliugh/blog/blog/2018/02/11/增加mybatis日志/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lliugh">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/upload/avater_1.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="lliugh 的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2018/02/11/增加mybatis日志/" itemprop="url">增加mybatis日志</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-11T18:25:34+08:00">
-                2018-02-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="修改工程web-xml，加入"><a href="#修改工程web-xml，加入" class="headerlink" title="修改工程web.xml，加入"></a>修改工程web.xml，加入</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context-param</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>log4jConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:log4j.properties<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">context-param</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>log4jRefreshInterval<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">param-value</span>&gt;</span>6000<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">listener</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">listener-class</span>&gt;</span>org.springframework.web.util.Log4jConfigListener<span class="tag">&lt;/<span class="name">listener-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">listener</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="增加log4j-properties"><a href="#增加log4j-properties" class="headerlink" title="增加log4j.properties"></a>增加log4j.properties</h3><figure class="highlight roboconf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">###设置Logger输出级别和输出目的地###debug更详细,如果设为info那么打印出的表数据遇到字符串就不显示，此外还有logfile</span></span><br><span class="line">log4j.rootLogger=info,stdout,D,E</span><br><span class="line"></span><br><span class="line"><span class="comment">###把日志信息输出到控制台###</span></span><br><span class="line">log4j.appender.stdout=org.apache.log4j.ConsoleAppender</span><br><span class="line"><span class="comment">#log4j.appender.stdout.Target=System.err</span></span><br><span class="line">log4j.appender.stdout.layout=org.apache.log4j.SimpleLayout</span><br><span class="line"></span><br><span class="line"><span class="comment">###把日志信息输出到文件：jbit.log###</span></span><br><span class="line">log4j.appender.logfile=org.apache.log4j.FileAppender</span><br><span class="line">log4j.appender.logfile.File=logs/Yimi/YimiInfo.log</span><br><span class="line">log4j.appender.logfile.layout=org.apache.log4j.PatternLayout</span><br><span class="line">log4j.appender.logfile.layout.ConversionPattern=%d&#123;<span class="attribute">yyyy-MM-ddHH</span>:mm:ss&#125;%F%p%m%n</span><br><span class="line"></span><br><span class="line">###输出DEBUG级别以上的日志到###</span><br><span class="line">log4j<span class="variable">.appender</span><span class="variable">.D</span>=org<span class="variable">.apache</span><span class="variable">.log</span>4j<span class="variable">.DailyRollingFileAppender</span></span><br><span class="line">log4j<span class="variable">.appender</span><span class="variable">.D</span><span class="variable">.File</span>=logs/Yimi/YimiDebug<span class="variable">.log</span></span><br><span class="line">log4j<span class="variable">.appender</span><span class="variable">.D</span><span class="variable">.Append</span>=true</span><br><span class="line">log4j<span class="variable">.appender</span><span class="variable">.D</span><span class="variable">.Threshold</span>=DEBUG</span><br><span class="line">log4j<span class="variable">.appender</span><span class="variable">.D</span><span class="variable">.layout</span>=org<span class="variable">.apache</span><span class="variable">.log</span>4j<span class="variable">.PatternLayout</span></span><br><span class="line">log4j<span class="variable">.appender</span><span class="variable">.D</span><span class="variable">.layout</span><span class="variable">.ConversionPattern</span>=%-d&#123;yyyy-MM-ddHH:mm:ss&#125;[%t:%r]-[%p]%m%n</span><br><span class="line"></span><br><span class="line">###输出ERROR级别以上的日志到###</span><br><span class="line">log4j<span class="variable">.appender</span><span class="variable">.E</span>=org<span class="variable">.apache</span><span class="variable">.log</span>4j<span class="variable">.DailyRollingFileAppender</span></span><br><span class="line">log4j<span class="variable">.appender</span><span class="variable">.E</span><span class="variable">.File</span>=Yimi/YimiError<span class="variable">.log</span></span><br><span class="line">log4j<span class="variable">.appender</span><span class="variable">.E</span><span class="variable">.Append</span>=true</span><br><span class="line">log4j<span class="variable">.appender</span><span class="variable">.E</span><span class="variable">.Threshold</span>=ERROR</span><br><span class="line">log4j<span class="variable">.appender</span><span class="variable">.E</span><span class="variable">.layout</span>=org<span class="variable">.apache</span><span class="variable">.log</span>4j<span class="variable">.PatternLayout</span></span><br><span class="line">log4j<span class="variable">.appender</span><span class="variable">.E</span><span class="variable">.layout</span><span class="variable">.ConversionPattern</span>=%-d&#123;yyyy-MM-ddHH:mm:ss&#125;[%t:%r]-[%p]%m%n</span><br><span class="line"></span><br><span class="line">###显示SQL语句部分</span><br><span class="line">log4j<span class="variable">.logger</span><span class="variable">.com</span><span class="variable">.mybatis</span>=INFO</span><br><span class="line">log4j<span class="variable">.logger</span><span class="variable">.com</span><span class="variable">.mybatis</span><span class="variable">.common</span><span class="variable">.jdbc</span><span class="variable">.SimpleDataSource</span>=INFO</span><br><span class="line">log4j<span class="variable">.logger</span><span class="variable">.com</span><span class="variable">.mybatis</span><span class="variable">.common</span><span class="variable">.jdbc</span><span class="variable">.ScriptRunner</span>=INFO</span><br><span class="line">log4j<span class="variable">.logger</span><span class="variable">.com</span><span class="variable">.mybatis</span><span class="variable">.sqlmap</span><span class="variable">.engine</span><span class="variable">.impl</span><span class="variable">.SqlMapClientDelegate</span>=INFO</span><br><span class="line">log4j<span class="variable">.logger</span><span class="variable">.java</span><span class="variable">.sql</span><span class="variable">.Connection</span>=INFO</span><br><span class="line">log4j<span class="variable">.logger</span><span class="variable">.java</span><span class="variable">.sql</span><span class="variable">.Statement</span>=INFO</span><br><span class="line">log4j<span class="variable">.logger</span><span class="variable">.java</span><span class="variable">.sql</span><span class="variable">.PreparedStatement</span>=INFO</span><br><span class="line">log4j<span class="variable">.logger</span><span class="variable">.java</span><span class="variable">.sql</span><span class="variable">.ResultSet</span>=INFO</span><br></pre></td></tr></table></figure>
-<h3 id="修改工程mybatis-xml，增加以下配置"><a href="#修改工程mybatis-xml，增加以下配置" class="headerlink" title="修改工程mybatis.xml，增加以下配置"></a>修改工程mybatis.xml，增加以下配置</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;setting <span class="attribute">name</span>=<span class="string">"logImpl"</span> <span class="attribute">value</span>=<span class="string">"STDOUT_LOGGING"</span> /&gt;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1619,7 +1629,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/blog/archives/">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
