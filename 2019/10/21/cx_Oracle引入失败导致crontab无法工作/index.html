@@ -83,6 +83,8 @@
 
 
 
+  
+
 
   <link rel="alternate" href="/blog/atom.xml" title="lliugh 的博客" type="application/atom+xml" />
 
@@ -96,17 +98,17 @@
 
 
 
-<meta name="description" content="配置文件写成如下形式(_config.yml)1234567deploy:- type: git  repo: &amp;#123;giturl&amp;#125;  branch: master- type: git  repo: &amp;#123;giturl&amp;#125;  branch: master">
+<meta name="description" content="版权声明：本文为CSDN博主「水墨小龙虾」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。本文链接：https://blog.csdn.net/jianhong1990/article/details/22167373今天遇到一个问题： 一个python脚本命令行运行时很正常，放到crontab中就无法工作，日志也没有记录，找了半天，终于发现问题所在。 在脚本">
 <meta property="og:type" content="article">
-<meta property="og:title" content="将hexo博客同时托管到github和码云">
-<meta property="og:url" content="https://gitee.com/lliugh/blog/2018/02/11/将hexo博客同时托管到github和coding/index.html">
+<meta property="og:title" content="cx_Oracle引入失败导致crontab无法工作">
+<meta property="og:url" content="https://gitee.com/lliugh/blog/2019/10/21/cx_Oracle引入失败导致crontab无法工作/index.html">
 <meta property="og:site_name" content="lliugh 的博客">
-<meta property="og:description" content="配置文件写成如下形式(_config.yml)1234567deploy:- type: git  repo: &amp;#123;giturl&amp;#125;  branch: master- type: git  repo: &amp;#123;giturl&amp;#125;  branch: master">
+<meta property="og:description" content="版权声明：本文为CSDN博主「水墨小龙虾」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。本文链接：https://blog.csdn.net/jianhong1990/article/details/22167373今天遇到一个问题： 一个python脚本命令行运行时很正常，放到crontab中就无法工作，日志也没有记录，找了半天，终于发现问题所在。 在脚本">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-12T04:29:48.000Z">
+<meta property="og:updated_time" content="2019-10-21T03:32:17.754Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="将hexo博客同时托管到github和码云">
-<meta name="twitter:description" content="配置文件写成如下形式(_config.yml)1234567deploy:- type: git  repo: &amp;#123;giturl&amp;#125;  branch: master- type: git  repo: &amp;#123;giturl&amp;#125;  branch: master">
+<meta name="twitter:title" content="cx_Oracle引入失败导致crontab无法工作">
+<meta name="twitter:description" content="版权声明：本文为CSDN博主「水墨小龙虾」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。本文链接：https://blog.csdn.net/jianhong1990/article/details/22167373今天遇到一个问题： 一个python脚本命令行运行时很正常，放到crontab中就无法工作，日志也没有记录，找了半天，终于发现问题所在。 在脚本">
 
 
 
@@ -135,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="https://gitee.com/lliugh/blog/2018/02/11/将hexo博客同时托管到github和coding/"/>
+  <link rel="canonical" href="https://gitee.com/lliugh/blog/2019/10/21/cx_Oracle引入失败导致crontab无法工作/"/>
 
 
 
 
 
-  <title>将hexo博客同时托管到github和码云 | lliugh 的博客</title>
+  <title>cx_Oracle引入失败导致crontab无法工作 | lliugh 的博客</title>
   
 
 
@@ -264,7 +266,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gitee.com/lliugh/blog/blog/2018/02/11/将hexo博客同时托管到github和coding/">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/lliugh/blog/blog/2019/10/21/cx_Oracle引入失败导致crontab无法工作/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lliugh">
@@ -281,7 +283,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">将hexo博客同时托管到github和码云</h1>
+          <h1 class="post-title" itemprop="name headline">cx_Oracle引入失败导致crontab无法工作</h1>
         
 
         <div class="post-meta">
@@ -293,8 +295,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-11T22:28:25+08:00">
-                2018-02-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-21T11:24:00+08:00">
+                2019-10-21
               </time>
             
 
@@ -331,7 +333,15 @@
       
 
       
-        <h3 id="配置文件写成如下形式-config-yml"><a href="#配置文件写成如下形式-config-yml" class="headerlink" title="配置文件写成如下形式(_config.yml)"></a>配置文件写成如下形式(_config.yml)</h3><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">deploy</span>:</span><br><span class="line">- <span class="attribute">type</span>: git</span><br><span class="line">  <span class="attribute">repo</span>: &#123;giturl&#125;</span><br><span class="line">  <span class="attribute">branch</span>: master</span><br><span class="line">- <span class="attribute">type</span>: git</span><br><span class="line">  <span class="attribute">repo</span>: &#123;giturl&#125;</span><br><span class="line">  <span class="attribute">branch</span>: master</span><br></pre></td></tr></table></figure>
+        <p>版权声明：本文为CSDN博主「水墨小龙虾」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。<br>本文链接：<a href="https://blog.csdn.net/jianhong1990/article/details/22167373" target="_blank" rel="noopener">https://blog.csdn.net/jianhong1990/article/details/22167373</a><br>今天遇到一个问题：</p>
+<pre><code>一个python脚本命令行运行时很正常，放到crontab中就无法工作，日志也没有记录，找了半天，终于发现问题所在。
+</code></pre><p>在脚本最上方，程序如下：<br><figure class="highlight plain"><figcaption><span>python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># coding=utf8</span><br><span class="line">import cx_Oracle</span><br><span class="line">import sys</span><br><span class="line">import time</span><br></pre></td></tr></table></figure></p>
+<p>注意，这里<br><figure class="highlight plain"><figcaption><span>cx_Oracle</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">cx_Oracle需要依赖oracle的ORACLE_HOME环境。我发现ORACLE_HOME定义在/etc/profile下，在这里修改的内容是对所有用户起作用的，但是对crontab是不起作用的。以下是各个文件的一个作用域：</span><br><span class="line"></span><br><span class="line">1. /etc/profile： 此文件为系统的每个用户设置环境信息,当用户第一次登录时,该文件被执行. 并从/etc/profile.d目录的配置文件中搜集shell的设置。</span><br><span class="line">2. /etc/bashrc: 为每一个运行bash shell的用户执行此文件.当bash shell被打开时,该文件被读取。</span><br><span class="line">3. ~/.bash_profile: 每个用户都可使用该文件输入专用于自己使用的shell信息,当用户登录时,该文件仅仅执行一次!默认情况下,他设置一些环境变量,执行用户的.bashrc文件。</span><br><span class="line">4. ~/.bashrc: 该文件包含专用于你的bash shell的bash信息,当登录时以及每次打开新的shell时,该该文件被读取。</span><br><span class="line">5. ~/.bash_logout: 当每次退出系统(退出bash shell)时,执行该文件. 另外,/etc/profile中设定的变量(全局)的可以作用于任何用户,而~/.bashrc等中设定的变量(局部)只能继承 /etc/profile中的变量,他们是&quot;父子&quot;关系。</span><br><span class="line">6. ~/.bash_profile 是交互式、login 方式进入 bash 运行的~/.bashrc 是交互式 non-login 方式进入 bash 运行的通常二者设置大致相同，所以通常前者会调用后者。</span><br><span class="line"></span><br><span class="line">解决办法：</span><br><span class="line">```30 7 * * *  . /etc/profile; /usr/local/bin/python2.7 /data/storeDataToOracleDB.py  &amp;</span><br></pre></td></tr></table></figure></p>
+<p>这里加上了</p>
+<pre><code class="/etc/profile;">
+</code></pre>
+<p>ok，问题解决。</p>
+
       
     </div>
     
@@ -355,8 +365,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2018/02/11/增加mybatis日志/" rel="next" title="增加mybatis日志">
-                <i class="fa fa-chevron-left"></i> 增加mybatis日志
+              <a href="/blog/2019/03/02/分布式系统/" rel="next" title="分布式系统">
+                <i class="fa fa-chevron-left"></i> 分布式系统
               </a>
             
           </div>
@@ -364,10 +374,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2018/02/12/CentOS安装Redis/" rel="prev" title="CentOS安装Redis">
-                CentOS安装Redis <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -419,17 +425,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/blog/upload/avater_1.png"
@@ -535,22 +532,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置文件写成如下形式-config-yml"><span class="nav-number">1.</span> <span class="nav-text">配置文件写成如下形式(_config.yml)</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
