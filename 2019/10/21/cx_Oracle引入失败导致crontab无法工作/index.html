@@ -1,37 +1,330 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.2.0">
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
 
-{% block page_class %}page-post-detail{% endblock %}
+<link rel="stylesheet" href="/blog/css/main.css">
 
 
-{% block content %}
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+<script class="next-config" data-name="main" type="application/json">{"hostname":"gitee.com","root":"/blog/","images":"/blog/images","scheme":"Gemini","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/blog/js/config.js"></script>
+
+    <meta name="description" content="版权声明：本文为CSDN博主「水墨小龙虾」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。本文链接：https:&#x2F;&#x2F;blog.csdn.net&#x2F;jianhong1990&#x2F;article&#x2F;details&#x2F;22167373 今天遇到一个问题： 一个python脚本命令行运行时很正常，放到crontab中就无法工作，日志也没有记录，找了半天，终于发现问题所在。 在脚">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cx_Oracle引入失败导致crontab无法工作">
+<meta property="og:url" content="https://gitee.com/lliugh/blog/2019/10/21/cx_Oracle%E5%BC%95%E5%85%A5%E5%A4%B1%E8%B4%A5%E5%AF%BC%E8%87%B4crontab%E6%97%A0%E6%B3%95%E5%B7%A5%E4%BD%9C/index.html">
+<meta property="og:site_name" content="lliugh 的博客">
+<meta property="og:description" content="版权声明：本文为CSDN博主「水墨小龙虾」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。本文链接：https:&#x2F;&#x2F;blog.csdn.net&#x2F;jianhong1990&#x2F;article&#x2F;details&#x2F;22167373 今天遇到一个问题： 一个python脚本命令行运行时很正常，放到crontab中就无法工作，日志也没有记录，找了半天，终于发现问题所在。 在脚">
+<meta property="og:locale">
+<meta property="article:published_time" content="2019-10-21T03:24:00.963Z">
+<meta property="article:modified_time" content="2019-10-21T05:20:27.631Z">
+<meta property="article:author" content="lliugh">
+<meta property="article:tag" content="工作">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://gitee.com/lliugh/blog/2019/10/21/cx_Oracle%E5%BC%95%E5%85%A5%E5%A4%B1%E8%B4%A5%E5%AF%BC%E8%87%B4crontab%E6%97%A0%E6%B3%95%E5%B7%A5%E4%BD%9C/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"https://gitee.com/lliugh/blog/2019/10/21/cx_Oracle%E5%BC%95%E5%85%A5%E5%A4%B1%E8%B4%A5%E5%AF%BC%E8%87%B4crontab%E6%97%A0%E6%B3%95%E5%B7%A5%E4%BD%9C/","path":"2019/10/21/cx_Oracle引入失败导致crontab无法工作/","title":"cx_Oracle引入失败导致crontab无法工作"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>cx_Oracle引入失败导致crontab无法工作 | lliugh 的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/blog/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/blog/atom.xml" title="lliugh 的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">lliugh 的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-tags"><a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">lliugh</p>
+  <div class="site-description" itemprop="description">一只特立独行的猪</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/blog/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/blog/tags/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/lliugh" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lliugh" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:guohaoliu@gmail.com" title="E-Mail → mailto:guohaoliu@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/lliugh" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;lliugh" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/lliugh" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;lliugh" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/lliugh/blog/2019/10/21/cx_Oracle%E5%BC%95%E5%85%A5%E5%A4%B1%E8%B4%A5%E5%AF%BC%E8%87%B4crontab%E6%97%A0%E6%B3%95%E5%B7%A5%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="lliugh">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lliugh 的博客">
+      <meta itemprop="description" content="一只特立独行的猪">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="cx_Oracle引入失败导致crontab无法工作 | lliugh 的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          cx_Oracle引入失败导致crontab无法工作
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2019-10-21 11:24:00 / Modified: 13:20:27" itemprop="dateCreated datePublished" datetime="2019-10-21T11:24:00+08:00">2019-10-21</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>版权声明：本文为CSDN博主「水墨小龙虾」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。<br>本文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/jianhong1990/article/details/22167373">https://blog.csdn.net/jianhong1990/article/details/22167373</a></p>
+<p>今天遇到一个问题：</p>
+<p>一个python脚本命令行运行时很正常，放到crontab中就无法工作，日志也没有记录，找了半天，终于发现问题所在。</p>
+<p>在脚本最上方，程序如下：</p>
+<figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/local/bin python</span></span><br><span class="line"># coding=utf8</span><br><span class="line"><span class="keyword">import</span> cx_Oracle</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> time</span><br></pre></td></tr></table></figure>
+<p>注意，这里</p>
+<figure class="highlight elm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cx_Oracle</span><br></pre></td></tr></table></figure>
+<p>cx_Oracle需要依赖oracle的ORACLE_HOME环境。我发现ORACLE_HOME定义在&#x2F;etc&#x2F;profile下，在这里修改的内容是对所有用户起作用的，但是对crontab是不起作用的。以下是各个文件的一个作用域：</p>
+<ol>
+<li>&#x2F;etc&#x2F;profile： 此文件为系统的每个用户设置环境信息,当用户第一次登录时,该文件被执行. 并从&#x2F;etc&#x2F;profile.d目录的配置文件中搜集shell的设置。</li>
+<li>&#x2F;etc&#x2F;bashrc: 为每一个运行bash shell的用户执行此文件.当bash shell被打开时,该文件被读取。</li>
+<li>~&#x2F;.bash_profile: 每个用户都可使用该文件输入专用于自己使用的shell信息,当用户登录时,该文件仅仅执行一次!默认情况下,他设置一些环境变量,执行用户的.bashrc文件。</li>
+<li>~&#x2F;.bashrc: 该文件包含专用于你的bash shell的bash信息,当登录时以及每次打开新的shell时,该该文件被读取。</li>
+<li><del>&#x2F;.bash_logout: 当每次退出系统(退出bash shell)时,执行该文件. 另外,&#x2F;etc&#x2F;profile中设定的变量(全局)的可以作用于任何用户,而</del>&#x2F;.bashrc等中设定的变量(局部)只能继承 &#x2F;etc&#x2F;profile中的变量,他们是”父子”关系。</li>
+<li><del>&#x2F;.bash_profile 是交互式、login 方式进入 bash 运行的</del>&#x2F;.bashrc 是交互式 non-login 方式进入 bash 运行的通常二者设置大致相同，所以通常前者会调用后者。</li>
+</ol>
+<p>解决办法：</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">30 </span><span class="number">7</span> * * *  . /etc/profile; /<span class="keyword">usr</span>/local/bin/python2.<span class="number">7</span> /<span class="keyword">data</span>/storeDataToOracleDB.py  &amp;</span><br></pre></td></tr></table></figure>
+<p>这里加上了</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">. <span class="regexp">/etc/</span>profile;</span><br></pre></td></tr></table></figure>
+<p>ok，问题解决。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/%E5%B7%A5%E4%BD%9C/" rel="tag"># 工作</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blog/2019/03/02/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/" rel="prev" title="分布式系统">
+                  <i class="fa fa-chevron-left"></i> 分布式系统
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/blog/2022/08/23/%E5%9C%A8-CentOS-7-%E4%B8%AD%E5%AE%89%E8%A3%85-Nextcloud/" rel="next" title="在 CentOS 7 中安装 Nextcloud">
+                  在 CentOS 7 中安装 Nextcloud <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lliugh</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/blog/js/comments.js"></script><script src="/blog/js/utils.js"></script><script src="/blog/js/motion.js"></script><script src="/blog/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

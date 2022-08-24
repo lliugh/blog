@@ -1,23 +1,1088 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.2.0">
 
-{% block title %}{{ config.title }}{% if theme.index_with_subtitle and config.subtitle %} - {{config.subtitle }}{% endif %}{% endblock %}
 
-{% block page_class %}
-  {% if is_home() %}page-home{% endif -%}
-{% endblock %}
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
 
-{% block content %}
-  <section id="posts" class="posts-expand">
-    {% for post in page.posts %}
-      {{ post_template.render(post, true) }}
-    {% endfor %}
-  </section>
+<link rel="stylesheet" href="/blog/css/main.css">
 
-  {% include '_partials/pagination.swig' %}
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(false) }}
-{% endblock %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"gitee.com","root":"/blog/","images":"/blog/images","scheme":"Gemini","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/blog/js/config.js"></script>
+
+    <meta name="description" content="一只特立独行的猪">
+<meta property="og:type" content="website">
+<meta property="og:title" content="lliugh 的博客">
+<meta property="og:url" content="https://gitee.com/lliugh/blog/index.html">
+<meta property="og:site_name" content="lliugh 的博客">
+<meta property="og:description" content="一只特立独行的猪">
+<meta property="og:locale">
+<meta property="article:author" content="lliugh">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://gitee.com/lliugh/blog/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-Hans","comments":"","permalink":"","path":"index.html","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>lliugh 的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/blog/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/blog/atom.xml" title="lliugh 的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">lliugh 的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-tags"><a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">lliugh</p>
+  <div class="site-description" itemprop="description">一只特立独行的猪</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/blog/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/blog/tags/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/lliugh" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lliugh" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:guohaoliu@gmail.com" title="E-Mail → mailto:guohaoliu@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/lliugh" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;lliugh" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/lliugh" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;lliugh" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/lliugh/blog/2022/08/23/%E5%9C%A8-CentOS-7-%E4%B8%AD%E5%AE%89%E8%A3%85-Nextcloud/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="lliugh">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lliugh 的博客">
+      <meta itemprop="description" content="一只特立独行的猪">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | lliugh 的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2022/08/23/%E5%9C%A8-CentOS-7-%E4%B8%AD%E5%AE%89%E8%A3%85-Nextcloud/" class="post-title-link" itemprop="url">在 CentOS 7 中安装 Nextcloud</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-08-23 22:48:35" itemprop="dateCreated datePublished" datetime="2022-08-23T22:48:35+08:00">2022-08-23</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/lliugh/blog/2019/10/21/cx_Oracle%E5%BC%95%E5%85%A5%E5%A4%B1%E8%B4%A5%E5%AF%BC%E8%87%B4crontab%E6%97%A0%E6%B3%95%E5%B7%A5%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="lliugh">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lliugh 的博客">
+      <meta itemprop="description" content="一只特立独行的猪">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | lliugh 的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2019/10/21/cx_Oracle%E5%BC%95%E5%85%A5%E5%A4%B1%E8%B4%A5%E5%AF%BC%E8%87%B4crontab%E6%97%A0%E6%B3%95%E5%B7%A5%E4%BD%9C/" class="post-title-link" itemprop="url">cx_Oracle引入失败导致crontab无法工作</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2019-10-21 11:24:00 / Modified: 13:20:27" itemprop="dateCreated datePublished" datetime="2019-10-21T11:24:00+08:00">2019-10-21</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>版权声明：本文为CSDN博主「水墨小龙虾」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。<br>本文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/jianhong1990/article/details/22167373">https://blog.csdn.net/jianhong1990/article/details/22167373</a></p>
+<p>今天遇到一个问题：</p>
+<p>一个python脚本命令行运行时很正常，放到crontab中就无法工作，日志也没有记录，找了半天，终于发现问题所在。</p>
+<p>在脚本最上方，程序如下：</p>
+<figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/local/bin python</span></span><br><span class="line"># coding=utf8</span><br><span class="line"><span class="keyword">import</span> cx_Oracle</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> time</span><br></pre></td></tr></table></figure>
+<p>注意，这里</p>
+<figure class="highlight elm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cx_Oracle</span><br></pre></td></tr></table></figure>
+<p>cx_Oracle需要依赖oracle的ORACLE_HOME环境。我发现ORACLE_HOME定义在&#x2F;etc&#x2F;profile下，在这里修改的内容是对所有用户起作用的，但是对crontab是不起作用的。以下是各个文件的一个作用域：</p>
+<ol>
+<li>&#x2F;etc&#x2F;profile： 此文件为系统的每个用户设置环境信息,当用户第一次登录时,该文件被执行. 并从&#x2F;etc&#x2F;profile.d目录的配置文件中搜集shell的设置。</li>
+<li>&#x2F;etc&#x2F;bashrc: 为每一个运行bash shell的用户执行此文件.当bash shell被打开时,该文件被读取。</li>
+<li>~&#x2F;.bash_profile: 每个用户都可使用该文件输入专用于自己使用的shell信息,当用户登录时,该文件仅仅执行一次!默认情况下,他设置一些环境变量,执行用户的.bashrc文件。</li>
+<li>~&#x2F;.bashrc: 该文件包含专用于你的bash shell的bash信息,当登录时以及每次打开新的shell时,该该文件被读取。</li>
+<li><del>&#x2F;.bash_logout: 当每次退出系统(退出bash shell)时,执行该文件. 另外,&#x2F;etc&#x2F;profile中设定的变量(全局)的可以作用于任何用户,而</del>&#x2F;.bashrc等中设定的变量(局部)只能继承 &#x2F;etc&#x2F;profile中的变量,他们是”父子”关系。</li>
+<li><del>&#x2F;.bash_profile 是交互式、login 方式进入 bash 运行的</del>&#x2F;.bashrc 是交互式 non-login 方式进入 bash 运行的通常二者设置大致相同，所以通常前者会调用后者。</li>
+</ol>
+<p>解决办法：</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">30 </span><span class="number">7</span> * * *  . /etc/profile; /<span class="keyword">usr</span>/local/bin/python2.<span class="number">7</span> /<span class="keyword">data</span>/storeDataToOracleDB.py  &amp;</span><br></pre></td></tr></table></figure>
+<p>这里加上了</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">. <span class="regexp">/etc/</span>profile;</span><br></pre></td></tr></table></figure>
+<p>ok，问题解决。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/lliugh/blog/2019/03/02/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="lliugh">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lliugh 的博客">
+      <meta itemprop="description" content="一只特立独行的猪">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | lliugh 的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2019/03/02/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">分布式系统</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2019-03-02 22:25:20 / Modified: 22:42:08" itemprop="dateCreated datePublished" datetime="2019-03-02T22:25:20+08:00">2019-03-02</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>作者：大闲人柴毛毛</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20004877/answer/282033178">https://www.zhihu.com/question/20004877/answer/282033178</a></p>
+<p>来源：知乎</p>
+<p>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+</blockquote>
+<p><img src="/blog/blog/images/fb-1.jpg" alt="分布式系统"></p>
+<h3 id="单机结构"><a href="#单机结构" class="headerlink" title="单机结构"></a>单机结构</h3><h4 id="我想大家最最最熟悉的就是单机结构，一个系统业务量很小的时候所有的代码都放在一个项目中就好了，然后这个项目部署在一台服务器上就好了。整个项目所有的服务都由这台服务器提供。这就是单机结构。"><a href="#我想大家最最最熟悉的就是单机结构，一个系统业务量很小的时候所有的代码都放在一个项目中就好了，然后这个项目部署在一台服务器上就好了。整个项目所有的服务都由这台服务器提供。这就是单机结构。" class="headerlink" title="我想大家最最最熟悉的就是单机结构，一个系统业务量很小的时候所有的代码都放在一个项目中就好了，然后这个项目部署在一台服务器上就好了。整个项目所有的服务都由这台服务器提供。这就是单机结构。"></a>我想大家最最最熟悉的就是单机结构，一个系统业务量很小的时候所有的代码都放在一个项目中就好了，然后这个项目部署在一台服务器上就好了。整个项目所有的服务都由这台服务器提供。这就是单机结构。</h4><h4 id="那么，单机结构有啥缺点呢？我想缺点是显而易见的，单机的处理能力毕竟是有限的，当你的业务增长到一定程度的时候，单机的硬件资源将无法满足你的业务需求。此时便出现了集群模式，往下接着看。"><a href="#那么，单机结构有啥缺点呢？我想缺点是显而易见的，单机的处理能力毕竟是有限的，当你的业务增长到一定程度的时候，单机的硬件资源将无法满足你的业务需求。此时便出现了集群模式，往下接着看。" class="headerlink" title="那么，单机结构有啥缺点呢？我想缺点是显而易见的，单机的处理能力毕竟是有限的，当你的业务增长到一定程度的时候，单机的硬件资源将无法满足你的业务需求。此时便出现了集群模式，往下接着看。"></a>那么，单机结构有啥缺点呢？我想缺点是显而易见的，单机的处理能力毕竟是有限的，当你的业务增长到一定程度的时候，单机的硬件资源将无法满足你的业务需求。此时便出现了集群模式，往下接着看。</h4><h3 id="集群结构"><a href="#集群结构" class="headerlink" title="集群结构"></a>集群结构</h3><h4 id="集群模式在程序猿界有各种装逼解释，有的让你根本无法理解，其实就是一个很简单的玩意儿，且听我一一道来。"><a href="#集群模式在程序猿界有各种装逼解释，有的让你根本无法理解，其实就是一个很简单的玩意儿，且听我一一道来。" class="headerlink" title="集群模式在程序猿界有各种装逼解释，有的让你根本无法理解，其实就是一个很简单的玩意儿，且听我一一道来。"></a>集群模式在程序猿界有各种装逼解释，有的让你根本无法理解，其实就是一个很简单的玩意儿，且听我一一道来。</h4><h4 id="单机处理到达瓶颈的时候，你就把单机复制几份，这样就构成了一个“集群”。集群中每台服务器就叫做这个集群的一个“节点”，所有节点构成了一个集群。每个节点都提供相同的服务，那么这样系统的处理能力就相当于提升了好几倍（有几个节点就相当于提升了这么多倍）。"><a href="#单机处理到达瓶颈的时候，你就把单机复制几份，这样就构成了一个“集群”。集群中每台服务器就叫做这个集群的一个“节点”，所有节点构成了一个集群。每个节点都提供相同的服务，那么这样系统的处理能力就相当于提升了好几倍（有几个节点就相当于提升了这么多倍）。" class="headerlink" title="单机处理到达瓶颈的时候，你就把单机复制几份，这样就构成了一个“集群”。集群中每台服务器就叫做这个集群的一个“节点”，所有节点构成了一个集群。每个节点都提供相同的服务，那么这样系统的处理能力就相当于提升了好几倍（有几个节点就相当于提升了这么多倍）。"></a>单机处理到达瓶颈的时候，你就把单机复制几份，这样就构成了一个“集群”。集群中每台服务器就叫做这个集群的一个“节点”，所有节点构成了一个集群。每个节点都提供相同的服务，那么这样系统的处理能力就相当于提升了好几倍（有几个节点就相当于提升了这么多倍）。</h4><h4 id="但问题是用户的请求究竟由哪个节点来处理呢？最好能够让此时此刻负载较小的节点来处理，这样使得每个节点的压力都比较平均。要实现这个功能，就需要在所有节点之前增加一个“调度者”的角色，用户的所有请求都先交给它，然后它根据当前所有节点的负载情况，决定将这个请求交给哪个节点处理。这个“调度者”有个牛逼了名字——负载均衡服务器。"><a href="#但问题是用户的请求究竟由哪个节点来处理呢？最好能够让此时此刻负载较小的节点来处理，这样使得每个节点的压力都比较平均。要实现这个功能，就需要在所有节点之前增加一个“调度者”的角色，用户的所有请求都先交给它，然后它根据当前所有节点的负载情况，决定将这个请求交给哪个节点处理。这个“调度者”有个牛逼了名字——负载均衡服务器。" class="headerlink" title="但问题是用户的请求究竟由哪个节点来处理呢？最好能够让此时此刻负载较小的节点来处理，这样使得每个节点的压力都比较平均。要实现这个功能，就需要在所有节点之前增加一个“调度者”的角色，用户的所有请求都先交给它，然后它根据当前所有节点的负载情况，决定将这个请求交给哪个节点处理。这个“调度者”有个牛逼了名字——负载均衡服务器。"></a>但问题是用户的请求究竟由哪个节点来处理呢？最好能够让此时此刻负载较小的节点来处理，这样使得每个节点的压力都比较平均。要实现这个功能，就需要在所有节点之前增加一个“调度者”的角色，用户的所有请求都先交给它，然后它根据当前所有节点的负载情况，决定将这个请求交给哪个节点处理。这个“调度者”有个牛逼了名字——负载均衡服务器。</h4><h4 id="集群结构的好处就是系统扩展非常容易。如果随着你们系统业务的发展，当前的系统又支撑不住了，那么给这个集群再增加节点就行了。但是，当你的业务发展到一定程度的时候，你会发现一个问题——无论怎么增加节点，貌似整个集群性能的提升效果并不明显了。这时候，你就需要使用微服务结构了。"><a href="#集群结构的好处就是系统扩展非常容易。如果随着你们系统业务的发展，当前的系统又支撑不住了，那么给这个集群再增加节点就行了。但是，当你的业务发展到一定程度的时候，你会发现一个问题——无论怎么增加节点，貌似整个集群性能的提升效果并不明显了。这时候，你就需要使用微服务结构了。" class="headerlink" title="集群结构的好处就是系统扩展非常容易。如果随着你们系统业务的发展，当前的系统又支撑不住了，那么给这个集群再增加节点就行了。但是，当你的业务发展到一定程度的时候，你会发现一个问题——无论怎么增加节点，貌似整个集群性能的提升效果并不明显了。这时候，你就需要使用微服务结构了。"></a>集群结构的好处就是系统扩展非常容易。如果随着你们系统业务的发展，当前的系统又支撑不住了，那么给这个集群再增加节点就行了。但是，当你的业务发展到一定程度的时候，你会发现一个问题——无论怎么增加节点，貌似整个集群性能的提升效果并不明显了。这时候，你就需要使用微服务结构了。</h4><h3 id="分布式结构"><a href="#分布式结构" class="headerlink" title="分布式结构"></a>分布式结构</h3><h4 id="先来对前面的知识点做个总结。"><a href="#先来对前面的知识点做个总结。" class="headerlink" title="先来对前面的知识点做个总结。"></a>先来对前面的知识点做个总结。</h4><h4 id="从单机结构到集群结构，你的代码基本无需要作任何修改，你要做的仅仅是多部署几台服务器，每台服务器上运行相同的代码就行了。但是，当你要从集群结构演进到微服务结构的时候，之前的那套代码就需要发生较大的改动了。所以对于新系统我们建议，系统设计之初就采用微服务架构，这样后期运维的成本更低。但如果一套老系统需要升级成微服务结构的话，那就得对代码大动干戈了。所以，对于老系统而言，究竟是继续保持集群模式，还是升级成微服务架构，这需要你们的架构师深思熟虑、权衡投入产出比。"><a href="#从单机结构到集群结构，你的代码基本无需要作任何修改，你要做的仅仅是多部署几台服务器，每台服务器上运行相同的代码就行了。但是，当你要从集群结构演进到微服务结构的时候，之前的那套代码就需要发生较大的改动了。所以对于新系统我们建议，系统设计之初就采用微服务架构，这样后期运维的成本更低。但如果一套老系统需要升级成微服务结构的话，那就得对代码大动干戈了。所以，对于老系统而言，究竟是继续保持集群模式，还是升级成微服务架构，这需要你们的架构师深思熟虑、权衡投入产出比。" class="headerlink" title="从单机结构到集群结构，你的代码基本无需要作任何修改，你要做的仅仅是多部署几台服务器，每台服务器上运行相同的代码就行了。但是，当你要从集群结构演进到微服务结构的时候，之前的那套代码就需要发生较大的改动了。所以对于新系统我们建议，系统设计之初就采用微服务架构，这样后期运维的成本更低。但如果一套老系统需要升级成微服务结构的话，那就得对代码大动干戈了。所以，对于老系统而言，究竟是继续保持集群模式，还是升级成微服务架构，这需要你们的架构师深思熟虑、权衡投入产出比。"></a>从单机结构到集群结构，你的代码基本无需要作任何修改，你要做的仅仅是多部署几台服务器，每台服务器上运行相同的代码就行了。但是，当你要从集群结构演进到微服务结构的时候，之前的那套代码就需要发生较大的改动了。所以对于新系统我们建议，系统设计之初就采用微服务架构，这样后期运维的成本更低。但如果一套老系统需要升级成微服务结构的话，那就得对代码大动干戈了。所以，对于老系统而言，究竟是继续保持集群模式，还是升级成微服务架构，这需要你们的架构师深思熟虑、权衡投入产出比。</h4><h4 id="OK，下面开始介绍所谓的分布式结构。"><a href="#OK，下面开始介绍所谓的分布式结构。" class="headerlink" title="OK，下面开始介绍所谓的分布式结构。"></a>OK，下面开始介绍所谓的分布式结构。</h4><h4 id="分布式结构就是将一个完整的系统，按照业务功能，拆分成一个个独立的子系统，在分布式结构中，每个子系统就被称为“服务”。这些子系统能够独立运行在web容器中，它们之间通过RPC方式通信。"><a href="#分布式结构就是将一个完整的系统，按照业务功能，拆分成一个个独立的子系统，在分布式结构中，每个子系统就被称为“服务”。这些子系统能够独立运行在web容器中，它们之间通过RPC方式通信。" class="headerlink" title="分布式结构就是将一个完整的系统，按照业务功能，拆分成一个个独立的子系统，在分布式结构中，每个子系统就被称为“服务”。这些子系统能够独立运行在web容器中，它们之间通过RPC方式通信。"></a>分布式结构就是将一个完整的系统，按照业务功能，拆分成一个个独立的子系统，在分布式结构中，每个子系统就被称为“服务”。这些子系统能够独立运行在web容器中，它们之间通过RPC方式通信。</h4><h4 id="举个例子，假设需要开发一个在线商城。按照微服务的思想，我们需要按照功能模块拆分成多个独立的服务，如：用户服务、产品服务、订单服务、后台管理服务、数据分析服务等等。这一个个服务都是一个个独立的项目，可以独立运行。如果服务之间有依赖关系，那么通过RPC方式调用。"><a href="#举个例子，假设需要开发一个在线商城。按照微服务的思想，我们需要按照功能模块拆分成多个独立的服务，如：用户服务、产品服务、订单服务、后台管理服务、数据分析服务等等。这一个个服务都是一个个独立的项目，可以独立运行。如果服务之间有依赖关系，那么通过RPC方式调用。" class="headerlink" title="举个例子，假设需要开发一个在线商城。按照微服务的思想，我们需要按照功能模块拆分成多个独立的服务，如：用户服务、产品服务、订单服务、后台管理服务、数据分析服务等等。这一个个服务都是一个个独立的项目，可以独立运行。如果服务之间有依赖关系，那么通过RPC方式调用。"></a>举个例子，假设需要开发一个在线商城。按照微服务的思想，我们需要按照功能模块拆分成多个独立的服务，如：用户服务、产品服务、订单服务、后台管理服务、数据分析服务等等。这一个个服务都是一个个独立的项目，可以独立运行。如果服务之间有依赖关系，那么通过RPC方式调用。</h4><h4 id="这样的好处有很多："><a href="#这样的好处有很多：" class="headerlink" title="这样的好处有很多："></a>这样的好处有很多：</h4><ol>
+<li>系统之间的耦合度大大降低，可以独立开发、独立部署、独立测试，系统与系统之间的边界非常明确，排错也变得相当容易，开发效率大大提升。</li>
+<li>系统之间的耦合度降低，从而系统更易于扩展。我们可以针对性地扩展某些服务。假设这个商城要搞一次大促，下单量可能会大大提升，因此我们可以针对性地提升订单系统、产品系统的节点数量，而对于后台管理系统、数据分析系统而言，节点数量维持原有水平即可。</li>
+<li>服务的复用性更高。比如，当我们将用户系统作为单独的服务后，该公司所有的产品都可以使用该系统作为用户系统，无需重复开发。</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/lliugh/blog/2019/02/13/%E4%B8%80%E6%96%87%E4%BA%86%E8%A7%A3%20OutOfMemory%20%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="lliugh">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lliugh 的博客">
+      <meta itemprop="description" content="一只特立独行的猪">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | lliugh 的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2019/02/13/%E4%B8%80%E6%96%87%E4%BA%86%E8%A7%A3%20OutOfMemory%20%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="post-title-link" itemprop="url">一文了解 OutOfMemory 及解决方案</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2019-02-13 11:09:08 / Modified: 11:33:21" itemprop="dateCreated datePublished" datetime="2019-02-13T11:09:08+08:00">2019-02-13</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>来自：唐尤华</p>
+<p>译自：<a target="_blank" rel="noopener" href="https://bloggceasy.files.wordpress.com/2015/05/outofmemoryerror2.pdf">https://bloggceasy.files.wordpress.com/2015/05/outofmemoryerror2.pdf</a></p>
+</blockquote>
+<h3 id="1-Java-堆空间"><a href="#1-Java-堆空间" class="headerlink" title="1. Java 堆空间"></a>1. Java 堆空间</h3><h4 id="发生频率"><a href="#发生频率" class="headerlink" title="发生频率"></a>发生频率</h4><p>5颗星</p>
+<h4 id="造成原因"><a href="#造成原因" class="headerlink" title="造成原因"></a>造成原因</h4><ol>
+<li>无法在 Java 堆中分配对象</li>
+<li>吞吐量增加</li>
+<li>应用程序无意中保存了对象引用，对象无法被 GC 回收</li>
+<li>应用程序过度使用 finalizer。finalizer 对象不能被 GC 立刻回收。finalizer 由结束队列服务的守护线程调用，有时 finalizer 线程的处理能力无法跟上结束队列的增长</li>
+</ol>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><blockquote>
+<p>单位对应：GB -&gt; G, g；MB -&gt; M, m；KB -&gt; K, k</p>
+</blockquote>
+<ol>
+<li>使用 -Xmx 增加堆大小</li>
+<li>修复应用程序中的内存泄漏</li>
+</ol>
+<h3 id="2-GC-开销超过限制"><a href="#2-GC-开销超过限制" class="headerlink" title="2. GC 开销超过限制"></a>2. GC 开销超过限制</h3><h4 id="发生频率-1"><a href="#发生频率-1" class="headerlink" title="发生频率"></a>发生频率</h4><p>5颗星</p>
+<h4 id="造成原因-1"><a href="#造成原因-1" class="headerlink" title="造成原因"></a>造成原因</h4><ol>
+<li>Java 进程98%的时间在进行垃圾回收，恢复了不到2%的堆空间，最后连续5个（编译时常量）垃圾回收一直如此。</li>
+</ol>
+<h4 id="解决方案-1"><a href="#解决方案-1" class="headerlink" title="解决方案"></a>解决方案</h4><ol>
+<li>使用 -Xmx 增加堆大小</li>
+<li>使用 -XX:-UseGCOverheadLimit 取消 GC 开销限制</li>
+<li>修复应用程序中的内存泄漏</li>
+</ol>
+<h3 id="3-请求的数组大小超过虚拟机限制"><a href="#3-请求的数组大小超过虚拟机限制" class="headerlink" title="3. 请求的数组大小超过虚拟机限制"></a>3. 请求的数组大小超过虚拟机限制</h3><h4 id="发生频率-2"><a href="#发生频率-2" class="headerlink" title="发生频率"></a>发生频率</h4><p>2颗星</p>
+<h4 id="造成原因-2"><a href="#造成原因-2" class="headerlink" title="造成原因"></a>造成原因</h4><ol>
+<li>应用程序试图分配一个超过堆大小的数组</li>
+</ol>
+<h4 id="解决方案-2"><a href="#解决方案-2" class="headerlink" title="解决方案"></a>解决方案</h4><ol>
+<li>使用 -Xmx 增加堆大小</li>
+<li>修复应用程序中分配巨大数组的 bug</li>
+</ol>
+<h3 id="4-Permgen-空间"><a href="#4-Permgen-空间" class="headerlink" title="4. Permgen 空间"></a>4. Permgen 空间</h3><h4 id="发生频率-3"><a href="#发生频率-3" class="headerlink" title="发生频率"></a>发生频率</h4><p>3颗星</p>
+<h4 id="造成原因-3"><a href="#造成原因-3" class="headerlink" title="造成原因"></a>造成原因</h4><ol>
+<li>Permgen 空间包含：<ul>
+<li>类的名字、字段、方法</li>
+<li>与类相关的对象数组和类型数组</li>
+<li>JIT 编译器优化</li>
+</ul>
+</li>
+<li>当 Permgen 空间用尽时，将抛出异常。</li>
+</ol>
+<h4 id="解决方案-3"><a href="#解决方案-3" class="headerlink" title="解决方案"></a>解决方案</h4><ol>
+<li>使用 -XX: MaxPermSize 增加 Permgen 大小</li>
+<li>不重启应用部署应用程序可能会导致此问题。重启 JVM 解决</li>
+</ol>
+<h3 id="5-Metaspace"><a href="#5-Metaspace" class="headerlink" title="5. Metaspace"></a>5. Metaspace</h3><h4 id="发生频率-4"><a href="#发生频率-4" class="headerlink" title="发生频率"></a>发生频率</h4><p>3颗星</p>
+<h4 id="造成原因-4"><a href="#造成原因-4" class="headerlink" title="造成原因"></a>造成原因</h4><ol>
+<li>从 Java 8 开始 Permgen 改成了 Metaspace，在本机内存中分配 class 元数据（称为 metaspace）。如果 metaspace 耗尽，则抛出异常</li>
+</ol>
+<h4 id="解决方案-4"><a href="#解决方案-4" class="headerlink" title="解决方案"></a>解决方案</h4><ol>
+<li>通过命令行设置 -XX: MaxMetaSpaceSize 增加 metaspace 大小</li>
+<li>取消 -XX: maxmetsspacedize</li>
+<li>减小 Java 堆大小,为 MetaSpace 提供更多的可用空间</li>
+<li>为服务器分配更多的内存</li>
+<li>可能是应用程序 bug，修复 bug</li>
+</ol>
+<h3 id="6-无法新建本机线程"><a href="#6-无法新建本机线程" class="headerlink" title="6. 无法新建本机线程"></a>6. 无法新建本机线程</h3><h4 id="发生频率-5"><a href="#发生频率-5" class="headerlink" title="发生频率"></a>发生频率</h4><p>5颗星</p>
+<h4 id="造成原因-5"><a href="#造成原因-5" class="headerlink" title="造成原因"></a>造成原因</h4><ol>
+<li>内存不足，无法创建新线程。由于线程在本机内存中创建，报告这个错误表明本机内存空间不足</li>
+</ol>
+<h4 id="解决方案-5"><a href="#解决方案-5" class="headerlink" title="解决方案"></a>解决方案</h4><ol>
+<li>为机器分配更多的内存</li>
+<li>减少 Java 堆空间</li>
+<li>修复应用程序中的线程泄漏。</li>
+<li>增加操作系统级别的限制<ul>
+<li>ulimit -a</li>
+<li>用户进程数增大 (-u) 1800</li>
+</ul>
+</li>
+<li>使用 -Xss 减小线程堆栈大小</li>
+</ol>
+<h3 id="7-杀死进程或子进程"><a href="#7-杀死进程或子进程" class="headerlink" title="7. 杀死进程或子进程"></a>7. 杀死进程或子进程</h3><h4 id="发生频率-6"><a href="#发生频率-6" class="headerlink" title="发生频率"></a>发生频率</h4><p>1颗星</p>
+<h4 id="造成原因-6"><a href="#造成原因-6" class="headerlink" title="造成原因"></a>造成原因</h4><ol>
+<li>内核任务：内存不足结束器，在可用内存极低的情况下会杀死进程</li>
+</ol>
+<h4 id="解决方案-6"><a href="#解决方案-6" class="headerlink" title="解决方案"></a>解决方案</h4><ol>
+<li>将进程迁移到不同的机器上</li>
+<li>给机器增加更多内存</li>
+</ol>
+<p>与其他 OOM 错误不同，这是由操作系统而非 JVM 触发的。</p>
+<h3 id="8-发生-stack-trace-with-native-method"><a href="#8-发生-stack-trace-with-native-method" class="headerlink" title="8. 发生 stack_trace_with_native_method"></a>8. 发生 stack_trace_with_native_method</h3><h4 id="发生频率-7"><a href="#发生频率-7" class="headerlink" title="发生频率"></a>发生频率</h4><p>1颗星</p>
+<h4 id="造成原因-7"><a href="#造成原因-7" class="headerlink" title="造成原因"></a>造成原因</h4><ol>
+<li>本机方法（native method）分配失败</li>
+<li>打印的堆栈跟踪信息，最顶层的帧是本机方法</li>
+</ol>
+<h4 id="解决方案-7"><a href="#解决方案-7" class="headerlink" title="解决方案"></a>解决方案</h4><ol>
+<li>使用操作系统本地工具进行诊断</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/lliugh/blog/2019/02/13/Nginx%E5%A4%84%E7%90%86%E5%9B%BE%E7%89%87%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="lliugh">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lliugh 的博客">
+      <meta itemprop="description" content="一只特立独行的猪">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | lliugh 的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2019/02/13/Nginx%E5%A4%84%E7%90%86%E5%9B%BE%E7%89%87%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" class="post-title-link" itemprop="url">Nginx处理图片注意事项</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2019-02-13 11:04:29 / Modified: 11:04:31" itemprop="dateCreated datePublished" datetime="2019-02-13T11:04:29+08:00">2019-02-13</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="IO流量问题"><a href="#IO流量问题" class="headerlink" title="IO流量问题"></a>IO流量问题</h3><p>当所有图片改为动态裁剪时，源位置只保留一张大尺寸图片，每次裁切时对存储图片的机器网卡IO要求较高。即使只使用一张小图，对后台来说，也是读取了一次全尺寸大图</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>如图片量很大，加入CDN做第一道缓存<br>Nginx加入图片缓存 ，做第二道缓存</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/lliugh/blog/2018/03/07/SLF4J%E6%8A%A5%E9%94%99%E7%9A%84%E8%A7%A3%E5%86%B3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="lliugh">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lliugh 的博客">
+      <meta itemprop="description" content="一只特立独行的猪">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | lliugh 的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2018/03/07/SLF4J%E6%8A%A5%E9%94%99%E7%9A%84%E8%A7%A3%E5%86%B3/" class="post-title-link" itemprop="url">SLF4J报错的解决</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2018-03-07 10:38:23 / Modified: 10:41:06" itemprop="dateCreated datePublished" datetime="2018-03-07T10:38:23+08:00">2018-03-07</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>项目未能启动，查看日志，报错为<br>java.lang.NoClassDefFoundError: org&#x2F;slf4j&#x2F;event&#x2F;LoggingEvent</p>
+<p>实际问题<br>Logback-classic version 1.1.4及其以后的版本需要1.7.15及其以上版本的slf4j-api。</p>
+<p>记住这个问题只会出现在1.1.4及其以后的logback版本，其他的绑定，例如slf4j-log4j, slf4j-jdk14 and slf4j-simple是不受影响的。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/lliugh/blog/2018/02/15/Nginx%E6%93%8D%E4%BD%9C%E5%9B%BE%E7%89%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="lliugh">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lliugh 的博客">
+      <meta itemprop="description" content="一只特立独行的猪">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | lliugh 的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2018/02/15/Nginx%E6%93%8D%E4%BD%9C%E5%9B%BE%E7%89%87/" class="post-title-link" itemprop="url">Nginx操作图片</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-02-15 12:02:31" itemprop="dateCreated datePublished" datetime="2018-02-15T12:02:31+08:00">2018-02-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2018-02-26 16:44:56" itemprop="dateModified" datetime="2018-02-26T16:44:56+08:00">2018-02-26</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>打水印版nginx安装过程(centos) </p>
+<h3 id="安装依赖组件"><a href="#安装依赖组件" class="headerlink" title="安装依赖组件"></a>安装依赖组件</h3><blockquote>
+<p>sudo yum install gd-devel pcre-devel libcurl-devel</p>
+</blockquote>
+<h3 id="下载Nginx"><a href="#下载Nginx" class="headerlink" title="下载Nginx"></a>下载Nginx</h3><blockquote>
+<p>(1) 下载 wget <a target="_blank" rel="noopener" href="http://nginx.org/download/nginx-1.9.6.tar.gz">http://nginx.org/download/nginx-1.9.6.tar.gz</a><br>(2) 解压 tar -zxvf nginx-1.9.6.tar.gz<br>(3) 进入目录 cd nginx-1.9.6 </p>
+</blockquote>
+<h3 id="下载水印功能源代码"><a href="#下载水印功能源代码" class="headerlink" title="下载水印功能源代码"></a>下载水印功能源代码</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/intaro/nginx-image-filter-watermark">https://github.com/intaro/nginx-image-filter-watermark</a><br>点击download zip下载 </p>
+</blockquote>
+<h3 id="覆盖Nginx中的代码"><a href="#覆盖Nginx中的代码" class="headerlink" title="覆盖Nginx中的代码"></a>覆盖Nginx中的代码</h3><blockquote>
+<p>将下载的zip解压，将其中的ngx_http_image_filter_module.c文件覆盖到nginx源码中<br>（&#x2F;src&#x2F;http&#x2F;modules&#x2F;http_image_filter_module.c） </p>
+</blockquote>
+<h3 id="编译安装Nginx（假设Nginx源码在usr-x2F-local-x2F-nginx-x2F-nginx-1-9-6中）"><a href="#编译安装Nginx（假设Nginx源码在usr-x2F-local-x2F-nginx-x2F-nginx-1-9-6中）" class="headerlink" title="编译安装Nginx（假设Nginx源码在usr&#x2F;local&#x2F;nginx&#x2F;nginx-1.9.6中）"></a>编译安装Nginx（假设Nginx源码在usr&#x2F;local&#x2F;nginx&#x2F;nginx-1.9.6中）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">./configure --with-http_image_filter_module </span><br><span class="line">--with-http_stub_status_module --with-http_ssl_module --with-http_sub_module  --prefix=/usr/local/nginx/nginx-1.9.6 </span><br><span class="line">make </span><br><span class="line">make install </span><br></pre></td></tr></table></figure>
+
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">Example Usage </span><br><span class="line">Base Usage: </span><br><span class="line">    location /img/ &#123; </span><br><span class="line">        image_filter watermark;#开启水印 </span><br><span class="line">        image_filter_watermark &quot;PATH_TO_FILE&quot;;#水印文件位置 </span><br><span class="line">        image_filter_watermark_position center-center;#水印位置 </span><br><span class="line">image_filter_jpeg_quality   95;#图片质量 </span><br><span class="line">        image_filter_buffer         20M;#缓存 </span><br><span class="line">image_filter_watermark_width_from 400;   # 打水印的图片最小宽带，只有大于这个宽带的才会打水印 </span><br><span class="line">       image_filter_watermark_height_from 400;  #打水印的图片最小高度，只有大于这个高度的才会打水印 </span><br><span class="line">    &#125; </span><br><span class="line">Usage with resize and crop: </span><br><span class="line">   location ~ ^/r/(\d+|-)x(\d+|-)/c/(\d+|-)x(\d+|-)/(.+) &#123; </span><br><span class="line">       set                         $resize_width  $1; </span><br><span class="line">       set                         $resize_height $2; </span><br><span class="line">       set                         $crop_width  $3; </span><br><span class="line">       set                         $crop_height $4; </span><br><span class="line"></span><br><span class="line">       alias                       /Users/goshan/Sites/Zot/Zot/web/$5; </span><br><span class="line">       try_files                   &quot;&quot; @404; </span><br><span class="line"></span><br><span class="line">       image_filter                resize $resize_width $resize_height; </span><br><span class="line">       image_filter                crop   $crop_width $crop_height; </span><br><span class="line"></span><br><span class="line">       image_filter_jpeg_quality   95; </span><br><span class="line">       image_filter_buffer         2M; </span><br><span class="line"></span><br><span class="line">       image_filter_watermark_width_from 400;   # Minimal width (after resize) of when to use watermark </span><br><span class="line">       image_filter_watermark_height_from 400;  # Minimal height (after resize) of when to use watermark </span><br><span class="line"></span><br><span class="line">       image_filter_watermark &quot;PATH_TO_FILE&quot;; </span><br><span class="line">       image_filter_watermark_position center-center; </span><br><span class="line">   &#125; </span><br></pre></td></tr></table></figure>
+
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><blockquote>
+<p>(1)	水印文件必须是背景透明的文件<br>(2)	如果要打水印的图片文件会很大，需将image_filter_buffer设置大一些，比如20M </p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/lliugh/blog/2018/02/15/2018%E5%B9%B4%E6%98%A5%E8%8A%82/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="lliugh">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lliugh 的博客">
+      <meta itemprop="description" content="一只特立独行的猪">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | lliugh 的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2018/02/15/2018%E5%B9%B4%E6%98%A5%E8%8A%82/" class="post-title-link" itemprop="url">2018年春节</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-02-15 11:04:36" itemprop="dateCreated datePublished" datetime="2018-02-15T11:04:36+08:00">2018-02-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2018-03-07 10:47:34" itemprop="dateModified" datetime="2018-03-07T10:47:34+08:00">2018-03-07</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="2017总结"><a href="#2017总结" class="headerlink" title="2017总结"></a>2017总结</h3><p>17年经历了比较多的东西，技术学习也荒废了，编码能力严重退化。</p>
+<h3 id="2018展望"><a href="#2018展望" class="headerlink" title="2018展望"></a>2018展望</h3><p>18、18、18、18、18、18、18、18、18</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/lliugh/blog/2018/02/13/elastic-job%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="lliugh">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lliugh 的博客">
+      <meta itemprop="description" content="一只特立独行的猪">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | lliugh 的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2018/02/13/elastic-job%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">elastic-job定时任务使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2018-02-13 14:57:22 / Modified: 15:31:35" itemprop="dateCreated datePublished" datetime="2018-02-13T14:57:22+08:00">2018-02-13</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="1-首先引入maven仓库"><a href="#1-首先引入maven仓库" class="headerlink" title="1.首先引入maven仓库"></a>1.首先引入maven仓库</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 引入elastic-job核心模块 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.dangdang<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>elastic-job-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 使用springframework自定义命名空间时引入 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.dangdang<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>elastic-job-spring<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/lliugh/blog/2018/02/12/%E5%AE%89%E8%A3%85Tomcat%E6%97%A5%E5%BF%97%E6%8B%86%E5%88%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="lliugh">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lliugh 的博客">
+      <meta itemprop="description" content="一只特立独行的猪">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | lliugh 的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2018/02/12/%E5%AE%89%E8%A3%85Tomcat%E6%97%A5%E5%BF%97%E6%8B%86%E5%88%86/" class="post-title-link" itemprop="url">安装Tomcat日志拆分</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-02-12 11:59:13" itemprop="dateCreated datePublished" datetime="2018-02-12T11:59:13+08:00">2018-02-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2018-02-24 10:26:04" itemprop="dateModified" datetime="2018-02-24T10:26:04+08:00">2018-02-24</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="使用root用户安装"><a href="#使用root用户安装" class="headerlink" title="使用root用户安装"></a>使用root用户安装</h3><h3 id="下载cronolog"><a href="#下载cronolog" class="headerlink" title="下载cronolog"></a>下载cronolog</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://files.cnblogs.com/files/crazyzero/cronolog-1.6.2.tar.gz</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装cronolog"><a href="#安装cronolog" class="headerlink" title="安装cronolog"></a>安装cronolog</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf cronolog-1.6.2.tar.gz</span><br><span class="line"><span class="built_in">cd</span> cronolog-1.6.2/</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+<h3 id="确认是否安装"><a href="#确认是否安装" class="headerlink" title="确认是否安装"></a>确认是否安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/sbin/cronolog</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改Tomcat运行文件catalina-sh"><a href="#修改Tomcat运行文件catalina-sh" class="headerlink" title="修改Tomcat运行文件catalina.sh"></a>修改Tomcat运行文件catalina.sh</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">修改</span><br><span class="line"></span><br><span class="line">    org.apache.catalina.startup.Bootstrap &quot;$@&quot; start &gt;&gt; &quot;$CATALINA_OUT&quot; 2&gt;&amp;1 &quot;&amp;&quot;</span><br><span class="line"></span><br><span class="line">为</span><br><span class="line"></span><br><span class="line">    org.apache.catalina.startup.Bootstrap &quot;$@&quot; start 2&gt;&amp;1 | /usr/local/sbin/cronolog &quot;$CATALINA_BASE&quot;/logs/catalina.%Y-%m-%d.out &gt;&gt; /dev/null &amp;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/blog/page/2/">2</a><a class="extend next" rel="next" href="/blog/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lliugh</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/blog/js/comments.js"></script><script src="/blog/js/utils.js"></script><script src="/blog/js/motion.js"></script><script src="/blog/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
